@@ -21,7 +21,9 @@
 ## Showing product category
 
 ```sql
-select products.nameProduct, productCategory.namacategory from products, productCategory where productCategory.idcategory = products.idcategory;
+select products.nameProduct, productCategory.namacategory
+from products, productCategory
+where productCategory.idcategory = products.idcategory;
 ```
 
 ![Screenshot](./assets/productcategory.png)
@@ -29,7 +31,9 @@ select products.nameProduct, productCategory.namacategory from products, product
 ## Showing user's product
 
 ```````sql
-select user.firstnameUser , products.nameProduct from us``` ukmkita `````` ukmkita ```er, products where products.idseller = user.iduser;
+select user.firstnameUser , products.nameProduct
+from us``` ukmkita `````` ukmkita ```er, products
+where products.idseller = user.iduser;
 ```````
 
 ![Screenshot](./assets/userproduct.png)
