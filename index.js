@@ -1,8 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
-// tables
-const { Products } = require('./dbconfig/sequelize')
+const ProductController = require('./controllers/productController')
 
 const app = express()
 
@@ -11,14 +10,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 
-// get data from mysql database
-app.get('/', (req, res)=> {
-    res.send('khaslokal API')
-})
 
-app.get('/api/products', (req, res)=> {
-    Products.findAll().then(products=> res.json(products))
-})
+ProductController(app)
 
 // start API
 const port = 3000
@@ -27,6 +20,15 @@ app.listen(port, ()=> {
 })
 
 
+// ===============================
+// get data from mysql database
+// app.get('/', (req, res)=> {
+//     res.send('khaslokal API')
+// })
+
+// app.get('/api/products', (req, res)=> {
+//     Products.findAll().then(products=> res.json(products))
+// })
 
 
 
@@ -36,6 +38,8 @@ app.listen(port, ()=> {
 
 
 
+
+// ================================
 // const express = require ('express')
 // const app = express()
 // const bodyParser = require('body-parser')
