@@ -21,7 +21,7 @@ module.exports = (app)=> {
     } = require('express-validator/check')
     
     // post data to user with validation
-    app.post('/api/user/add',
+    app.post('/api/users/add',
     [
         check('firstnameUser').isLength({
             min: 3
@@ -32,10 +32,10 @@ module.exports = (app)=> {
         check('emailUser').isEmail(),
         check('addressUser').isLength({
             min: 20
-        }),
-        check('phoneUser').isEmail({
-            min: 10
         })
+        // check('phoneUser').isLength({
+        //     min: 10
+        // })
     ], (req, res)=> {
         const errors = validationResult(req)
         if(!errors.isEmpty()){
@@ -93,8 +93,8 @@ module.exports = (app)=> {
     })
     
     // delete data identified by iduser
-    app.delete('/api/user/delete/:iduser', (req, res)=> {
-        user.destroy({
+    app.delete('/api/users/delete/:iduser', (req, res)=> {
+        users.destroy({
             where: {
                 iduser: req.params.iduser
             }
