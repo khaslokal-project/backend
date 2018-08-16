@@ -21,6 +21,7 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 
 db.products = require('../models/products')(sequelize, Sequelize)
+db.users = require('../models/users')(sequelize, Sequelize)
 
 module.exports = db
 

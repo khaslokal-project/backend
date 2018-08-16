@@ -5,7 +5,7 @@ module.exports = (app)=> {
 
     // get home
     app.get('/', (req, res)=> {
-        res.send('khaslokal api')
+        res.send('khaslokal API')
     })
     // get all product
     app.get('/api/products', (req, res)=> {
@@ -47,6 +47,8 @@ module.exports = (app)=> {
         console.log(req.body);
             products.create({
                 idproduct: req.body.idproduct,
+                idseller: req.body.idseller,
+                idcategory: req.body.idcategory,
                 nameProduct: req.body.nameProduct,
                 priceProduct: req.body.priceProduct,
                 stockProduct: req.body.stockProduct,
