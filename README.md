@@ -37,3 +37,20 @@ where products.idseller = user.iduser;
 ```
 
 ![Screenshot](./assets/userproduct.png)
+
+```
+mysql> desc user;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| iduser        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| firstnameUser | varchar(20) | NO   |     | NULL    |                |
+| lastnameUser  | varchar(20) | NO   |     | NULL    |                |
+| emailUser     | varchar(20) | NO   |     | NULL    |                |
+| addressUser   | text        | NO   |     | NULL    |                |
+| phoneUser     | int(11)     | NO   |     | NULL    |                |
+| createdAt     | varchar(60) | NO   |     | NULL    |                |
+| updatedAt     | varchar(60) | NO   |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+8 rows in set (0.01 sec)
+```

@@ -5,6 +5,8 @@ module.exports = (sequelize, Sequelize)=> {
             primaryKey: true,
             autoIncrement: true
         },
+        'idseller': Sequelize.INTEGER,
+        'idcategory': Sequelize.INTEGER,
         'nameProduct': Sequelize.STRING,
         'priceProduct': Sequelize.INTEGER,
         'stockProduct': Sequelize.INTEGER,
