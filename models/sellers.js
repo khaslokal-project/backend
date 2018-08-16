@@ -7,8 +7,8 @@ module.exports = (sequelize, Sequelize)=> {
         },
         'firstnameSeller':Sequelize.STRING,
         'lastnameSeller':Sequelize.STRING,
-        'addressSeller':Sequelize.STRING,
         'emailSeller':Sequelize.STRING,
+        'addressSeller':Sequelize.STRING,
         'phoneSeller':Sequelize.STRING
     }, {
         freezeTableName: true
