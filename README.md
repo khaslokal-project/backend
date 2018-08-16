@@ -30,10 +30,10 @@ where productCategory.idcategory = products.idcategory;
 
 ## Showing user's product
 
-```````sql
+```sql
 select user.firstnameUser , products.nameProduct
-from us``` ukmkita `````` ukmkita ```er, products
+from user, products
 where products.idseller = user.iduser;
-```````
+```
 
 ![Screenshot](./assets/userproduct.png)
