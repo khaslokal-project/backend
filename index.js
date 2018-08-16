@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 
 const ProductController = require('./controllers/productController')
 const UserController = require('./controllers/usersController')
+const SellerController = require('./controllers/sellersController')
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({
 
 ProductController(app)
 UserController(app)
+SellerController(app)
 
 
 // start API
