@@ -32,10 +32,10 @@ module.exports = (app)=> {
         check('emailUser').isEmail(),
         check('addressUser').isLength({
             min: 20
+        }),
+        check('phoneUser').isLength({
+            min: 10
         })
-        // check('phoneUser').isLength({
-        //     min: 10
-        // })
     ], (req, res)=> {
         const errors = validationResult(req)
         if(!errors.isEmpty()){
