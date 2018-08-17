@@ -1,18 +1,22 @@
 {
   "name": "khaslokal",
-  "version": "1.0.0",
-  "description": "khaslokal api",
-  "main": "index.js",
-  "author": "khaslokal team",
-  "license": "MIT",
-  "devDependencies": {},
+  "version": "0.0.0",
+  "main":"index.js",
+  "private": true,
+  "scripts": {
+    "start": "node index",
+    "dev":"nodemon index",
+    "migrate":"sequelize db:migrate",
+    "migrate:undo":"sequelize db:migrate:undo",
+    "migrate:undo:all":"sequelize db:migrate:undo:all"
+  },
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
-    "express-validator": "^5.3.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
     "mysql2": "^1.6.1",
-    "nodemon": "^1.18.3",
     "sequelize": "^4.38.0"
   }
 }
