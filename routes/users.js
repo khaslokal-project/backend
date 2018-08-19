@@ -4,8 +4,8 @@ var router = express.Router();
 const User = require('../models').User
 
 router.get('/', function(req, res, next) {
-  User.findAll().then(users => {
-    res.send(users);
+  User.findAll().then(user => {
+    res.send(user);
   }).catch(error => {
     res.send(error);
   })
