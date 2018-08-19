@@ -1,21 +1,14 @@
 var express = require('express')
 var router = express.Router()
-const Product = require('../models').Product
 
-router.get('/', function(req, res, next) {
-  Product.findAll().then(product => {
-    res.send(product);
-  }).catch(error => {
-    res.send(error);
-  })
-});
+const productController = require('../controller/products')
 
-router.post('/', (req, res, next)=> {
-  Product.create(req.body).then(product => {
-    res.send(product);
-  }).catch(error => {
-    res.send(error);
-  })
-});
+router.post('/', productController.add)
+
+router.get('/', productController.get)
+
+router.get('/:id', productController.search)
+
+router.delete('/:id', productController.remove)
 
 module.exports = router;

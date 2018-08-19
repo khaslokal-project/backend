@@ -6,7 +6,8 @@ const productCategoryController = {
     get: (req, res, next) => {
         productCategory.findAll().then(category => {
             res.send(category)
-          }).catch(error => {
+          })
+          .catch(error => {
             res.status(400).send({ error })
           })
       },

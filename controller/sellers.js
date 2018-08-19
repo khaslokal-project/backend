@@ -1,27 +1,29 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const { Admin } = require('../models')
+const { Seller } = require('../models')
 
-const adminController = {
+const sellerController = {
 
-    // get all Admin list
+    // get all Seller list
     get: (req, res, next)=> {
-        Admin.findAll().then(admin=> {
-            res.status(200).send(admin)
+        Seller.findAll().then(seller=> {
+            res.status(200).send(seller)
         }).catch(error=> {
             res.status(500).send(error)
         })
     },
 
-    // register new admin
+    // register new seller
     register: (req, res, next)=> {
         const{
             username,
             firstname,
             lastname,
+            address,
             password,
-            email
+            email,
+            phone
         } = req.body
         if(username && password && email){
             const saltRounds = 5
@@ -32,20 +34,26 @@ const adminController = {
                     username,
                     firstname,
                     lastname,
+                    address,
                     password: hash,
-                    email
+                    email,
+                    phone
                 }
             })
-            .then(newAdmin=> {
-                Admin.build(newAdmin).save()
-                .then(admin=> {
+            .then(newSeller=> {
+                Seller.build(newSeller).save()
+                .then(seller=> {
                     res.status(200).send({
-                        message: 'Admin Created',
-                        admin: {
-                            id: admin.id,
-                            username: admin.username,
-                            password: admin.password,
-                            email:admin.email
+                        message: 'Seller Created',
+                        seller: {
+                            id: seller.id,
+                            username: seller.username,
+                            firstname: seller.username,
+                            lastname: seller.lastname,
+                            address: seller.address,
+                            password: seller.password,
+                            email:seller.email,
+                            phone: seller.phone
                         }
                     })
                 }).catch(err=> {
@@ -60,15 +68,17 @@ const adminController = {
             }
     },
 
-    // update Admin
+    // update Seller
     update: (req, res, next)=> {
         const id = Number(req.params.id)
         if(req.body.password && req.body.email){
-            Admin.update({
+            Seller.update({
                 username: req.body.username,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
+                address: req.body.address,
                 email: req.body.email,
+                phone: req.body.phone,
                 updatedAt: new Date()
             },{
                 where: {
@@ -77,7 +87,7 @@ const adminController = {
             })
         .then(()=> {
             res.status(200).send({
-                message: 'Admin updated'
+                message: 'Seller updated'
             })
         })
         } else {
@@ -87,15 +97,30 @@ const adminController = {
         }
     },
 
-    // remove Admin
+    // remove Seller
     remove: (req, res, next)=> {
         const id = Number(req.params.id)
-        Admin.destroy({
+        Seller.destroy({
             where: { id: id }
         })
         .then(res.status(200).send({
-            message: "Admin removed"
+            message: "Seller removed"
         }))
+    },
+
+    // search seller by id
+    search: (req, res, next)=> {
+        const id = Number(req.params.id)
+        Seller.findById(id).then(seller=> {
+            if(seller){
+                res.send(seller)
+            } else {
+                res.send({ message: 'Seller not found' })
+            }
+        })
+        .catch(error=> {
+            res.status(400).send(error)
+        })
     },
 
     login: (req, res)=> {
@@ -104,19 +129,19 @@ const adminController = {
             password,
         } = req.body
         if(username && password){
-            Admin.findOne({where:{username}})
-            .then(admin=> {
+            Seller.findOne({where:{username}})
+            .then(seller=> {
                 const token = jwt.sign({
                     iat: Math.floor(Date.now() / 1000) - 30,
                     data: {
-                        id: admin.id,
-                        username:admin.username,
-                        email: admin.email
+                        id: seller.id,
+                        username:seller.username,
+                        email: seller.email
                     }
                 }, process.env.JWT_SECRET, {
                     expiresIn: '1d'
                 })
-                bcrypt.compare(password, admin.password)
+                bcrypt.compare(password, seller.password)
                 .then(response=> {
                     if(response){
                         res.status(200).send({
@@ -143,4 +168,11 @@ const adminController = {
     }
 }
 
-module.exports = adminController
+module.exports = sellerController
+
+// firstname
+// lastname
+// address
+// password
+// email
+// phone

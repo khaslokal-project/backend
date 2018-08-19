@@ -6,9 +6,9 @@ const adminController = require('../controller/admins')
 // admin routes view
 router.get('/', adminController.get)
 
-router.post('/', adminController.register)
+router.post('/register', adminController.register)
 
-router.post('/', adminController.login)
+router.post('/login', adminController.login)
 
 router.put('/:id', adminController.update)
 
