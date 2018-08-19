@@ -8,3 +8,5 @@ backup.json
 setup.sh
 
 .DS_Store
+
+config/
