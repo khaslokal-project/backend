@@ -134,9 +134,20 @@
 ### Query
 
 ```sql
-select products.nameProduct, productCategory.namacategory
-from products, productCategory
-where productCategory.idcategory = products.idcategory;
+mysql> select Products.name, productCategories.nameCategory
+from Products, productCategories
+where Products.idcategory = productCategories.id;
+```
+
+```
++-------------------+--------------+
+| name              | nameCategory |
++-------------------+--------------+
+| Tempe             | cemilan      |
+| Melayu Tea        | minuman      |
+| Tenun Motif Batam | kerajinan    |
++-------------------+--------------+
+3 rows in set (0.00 sec)
 ```
 
 ## Showing product by 1 category
