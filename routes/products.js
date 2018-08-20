@@ -9,6 +9,8 @@ router.get('/', productController.get)
 
 router.get('/:id', productController.search)
 
+router.put('/:id', productController.update)
+
 router.delete('/:id', productController.remove)
 
 module.exports = router;

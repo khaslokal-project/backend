@@ -57,6 +57,52 @@ const productController = {
       });
   },
 
+    // edit product
+    update: (req, res, next)=> {
+        const id = Number(req.params.id)
+        if(req.body.name){
+            Product.update({
+                idseller: req.body.idseller,
+                idcategory: req.body.idcategory,
+                name: req.body.name,
+                price: req.body.price,
+                stock: req.body.stock,
+                brand: req.body.brand,
+                description: req.body.description,
+                type: req.body.type,
+                image: req.body.image,
+                rating: req.body.rating,
+                review: req.body.review,
+                updatedAt: new Date()
+            },{
+                where: { id: id }
+            })
+        .then(()=> {
+            res.status(200).send({
+                message: 'Product updated'
+            })
+        })
+        } else {
+            res.status(416).send({
+                message: 'Please specify password and email!'
+            })
+        }
+    },
+
+    // get data by id
+    search: (req, res, next)=> {
+        const id = Number(req.params.id)
+        Product.findById(id).then(product=> {
+            if(product){
+                res.send(product)
+            } else {
+                res.send({ message: 'Product not found' })
+            }
+        })
+        .catch(error=> {
+            res.status(400).send(error)
+        })
+    },
   // get data by id
   search: (req, res, next) => {
     const id = Number(req.params.id);
