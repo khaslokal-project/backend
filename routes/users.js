@@ -1,22 +1,24 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 
-const User = require('../models').User
+const userController = require("../controller/users");
 
-router.get('/', function(req, res, next) {
-  User.findAll().then(user => {
-    res.send(user);
-  }).catch(error => {
-    res.send(error);
-  })
-});
+// add new user
+router.post("/register", userController.register);
 
-router.post('/', function(req, res, next) {
-  User.create(req.body).then(user => {
-    res.send(user);
-  }).catch(error => {
-    res.send(error);
-  })
-});
+// get all user
+router.get("/", userController.get);
+
+// get all data user by id
+router.get("/:id", userController.search);
+
+//get data user by id
+router.post("/login", userController.login);
+
+// edit user data
+router.put("/:id", userController.update);
+
+// remove user
+router.delete("/:id", userController.remove);
 
 module.exports = router;
