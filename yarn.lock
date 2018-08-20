@@ -161,7 +161,7 @@ content-type@~1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/content-type/-/content-type-1.0.4.tgz#e138cc75e040c727b1966fe5e5f8c9aee256fe3b"
 
-cookie-parser@~1.4.3:
+cookie-parser@^1.4.3:
   version "1.4.3"
   resolved "https://registry.yarnpkg.com/cookie-parser/-/cookie-parser-1.4.3.tgz#0fe31fa19d000b95f4aadf1f53fdc2b8a203baa5"
   dependencies:
@@ -187,7 +187,7 @@ cors@^2.8.4:
     object-assign "^4"
     vary "^1"
 
-debug@2.6.9, debug@^2.1.2, debug@^2.6.9, debug@~2.6.9:
+debug@2.6.9, debug@^2.1.2, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   dependencies:
@@ -593,7 +593,7 @@ moment-timezone@^0.5.14:
   version "2.22.2"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.2.tgz#3c257f9839fc0e93ff53149632239eb90783ff66"
 
-morgan@~1.9.0:
+morgan@^1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.9.0.tgz#d01fa6c65859b76fcf31b3cb53a3821a311d8051"
   dependencies:
@@ -683,9 +683,9 @@ nopt@^4.0.1:
     abbrev "1"
     osenv "^0.1.4"
 
-now@^11.3.10:
-  version "11.3.10"
-  resolved "https://registry.yarnpkg.com/now/-/now-11.3.10.tgz#ec0512d4ff53a8b9529eb3ac07e16ce2cffe2ac7"
+now@^11.3.11:
+  version "11.3.11"
+  resolved "https://registry.yarnpkg.com/now/-/now-11.3.11.tgz#ae9abcbacbca85a55fba3f42b616ad041290f399"
 
 npm-bundled@^1.0.1:
   version "1.0.5"
@@ -859,13 +859,9 @@ sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
-semver@^5.3.0:
+semver@^5.3.0, semver@^5.5.0:
   version "5.5.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.1.tgz#7dfdd8814bdb7cabc7be0fb1d734cfb66c940477"
-
-semver@^5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
 
 send@0.16.2:
   version "0.16.2"
