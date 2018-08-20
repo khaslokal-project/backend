@@ -1,6 +1,16 @@
-const { Admincourier } = require("../models");
+const { Admincourier } = require("../models")
 
 const admincourierController = {
+
+  get: (req, res)=> {
+    return Admincourier.findAll().then(admincourier=> {
+      res.json(admincourier)
+    })
+    .catch(error=> {
+      res.status(400).send(error)
+    })
+  },
+
   add: (req, res) => {
     return Admincourier.create({
       addressseller: req.body.addressseller,
@@ -19,12 +29,12 @@ const admincourierController = {
           status: "success",
           message: "admincourier added",
           data: newAdminCourier
-        });
+        })
       })
       .catch(error => {
-        res.status(400).send(error);
-      });
+        res.status(400).send(error)
+      })
   }
-};
+}
 
-module.exports = admincourierController;
+module.exports = admincourierController

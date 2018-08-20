@@ -104,7 +104,7 @@ const sellerController = {
             where: { id: id }
         })
         .then(res.status(200).send({
-            message: "Seller removed"
+            message: 'Seller removed'
         }))
     },
 
@@ -164,7 +164,7 @@ const sellerController = {
 
     // log out
     logout: (req, res, next)=> {
-        res.status(200).send({ message: "see ya" })
+        res.status(200).send({ message: 'see ya' })
     }
 }
 

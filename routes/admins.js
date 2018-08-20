@@ -14,4 +14,6 @@ router.put('/:id', adminController.update)
 
 router.delete('/:id', adminController.remove)
 
+router.post('/logout', adminController.logout)
+
 module.exports = router;
