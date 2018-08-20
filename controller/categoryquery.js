@@ -5,7 +5,10 @@ const categoryController = {
   // search
   searchByCategory: (req, res, next) => {
     Sequelize.query(
-      "select Products.name, productCategories.nameCategory from Products, productCategories where Products.idcategory = productCategories.id and productCategories.id =1"
+      `select Products.name, productCategories.nameCategory
+      from Products, productCategories
+      where Products.idcategory = productCategories.id
+      and productCategories.id =1`
     ).then(result => {
       console.log(result);
       if (result) {
