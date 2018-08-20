@@ -1,0 +1,642 @@
+{
+	"info": {
+		"_postman_id": "d8180b62-5b85-4103-a41f-0cc79de26823",
+		"name": "ukmkita",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Landing Page",
+			"item": [
+				{
+					"name": "Show home",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admins",
+			"item": [
+				{
+					"name": "Show Admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/admins",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Admins",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"pijitpijit\",\n    \"firstname\": \"indra\",\n    \"lastname\": \"putra\",\n    \"password\": \"hello\",\n    \"email\": \"pijital@example.com\",\n    \"createdAt\": \"2018-08-18T12:08:54.000Z\",\n    \"updatedAt\": \"2018-08-18T12:20:39.000Z\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/admins/update/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admins",
+								"update",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Admin",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"pijital\",\n\t\"firstname\":\"indra\",\n\t\"lastname\":\"putra\",\n\t\"address\":\"villa hanglekir blok BB3 No. 6 Batam Center\",\n\t\"password\":\"pijital\",\n\t\"email\":\"indra@example.com\",\n\t\"phone\":\"08117541530\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/admins/3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admins",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"indrak\",\n\t\"password\":\"pijital\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/admins/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admins",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"indrak\",\n\t\"firstname\":\"indra\",\n\t\"lastname\":\"putra\",\n\t\"address\":\"villa hanglekir blok BB3 No. 6 Batam Center\",\n\t\"password\":\"pijital\",\n\t\"email\":\"indra@example.com\",\n\t\"phone\":\"08117541530\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/admins/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admins",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Show all product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MzQ2NjE4NTcsImRhdGEiOnsiaWQiOjQsInVzZXJuYW1lIjoiaW5kcmFrIiwiZW1haWwiOiJpbmRyYUBleGFtcGxlLmNvbSJ9LCJleHAiOjE1MzQ3NDgyNTd9.Mjss7DekIcfqPaHFgXLZXuCx-W8zgo4YfOqdIDxCOIk",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nameCategory\": \"cake\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/products/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search product by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MzQ2NjE4NTcsImRhdGEiOnsiaWQiOjQsInVzZXJuYW1lIjoiaW5kcmFrIiwiZW1haWwiOiJpbmRyYUBleGFtcGxlLmNvbSJ9LCJleHAiOjE1MzQ3NDgyNTd9.Mjss7DekIcfqPaHFgXLZXuCx-W8zgo4YfOqdIDxCOIk",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nameCategory\": \"cake\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/products/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add product by admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MzQ2NjUyNDgsImRhdGEiOnsiaWQiOjQsInVzZXJuYW1lIjoiaW5kcmFrIiwiZW1haWwiOiJpbmRyYUBleGFtcGxlLmNvbSJ9LCJleHAiOjE1MzQ3NTE2NDh9.3JasbAU9zqtzBss-VHQJcboLTyLZLC9FBf5GtNIa3gI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idseller\":\"5\",\n\t\"idcategory\":\"2\",\n\t\"name\": \"Keripik\",\n\t\"price\": 15000,\n\t\"stock\": 10,\n\t\"brand\": \"Tempeku\",\n\t\"description\": \"Keripik Tempe Renyah yang dibuat langsung oleh warga tempatan Baju Ampar, sebagai upaya bersama membangun semangat desa\",\n\t\"type\": \"snack\",\n\t\"image\": \"https://cdn.sribu.com/assets/media/contest_detail/2016/2/kontes-desain-label-keripik-singkong-aruna-56b45f3bca6bcb4a00000002/f7dd864d1c.jpg\",\n\t\"rating\": 5,\n\t\"review\": \"Sangat renyah\"\n    }"
+						},
+						"url": {
+							"raw": "{{url}}/products/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								""
+							]
+						},
+						"description": "admin must loggin first\ninclude:\nx-access-header\ntoken"
+					},
+					"response": []
+				},
+				{
+					"name": "Update product by admin",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MzQ2NjUyNDgsImRhdGEiOnsiaWQiOjQsInVzZXJuYW1lIjoiaW5kcmFrIiwiZW1haWwiOiJpbmRyYUBleGFtcGxlLmNvbSJ9LCJleHAiOjE1MzQ3NTE2NDh9.3JasbAU9zqtzBss-VHQJcboLTyLZLC9FBf5GtNIa3gI",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idseller\":\"5\",\n\t\"idcategory\":\"2\",\n\t\"name\": \"Keripik\",\n\t\"price\": 15000,\n\t\"stock\": 10,\n\t\"brand\": \"Tempeku\",\n\t\"description\": \"Keripik Tempe Renyah yang dibuat langsung oleh warga tempatan Baju Ampar, sebagai upaya bersama membangun semangat desa\",\n\t\"type\": \"snack\",\n\t\"image\": \"keripik.jpg\",\n\t\"rating\": 5,\n\t\"review\": \"Sangat renyah\"\n    }"
+						},
+						"url": {
+							"raw": "{{url}}/products/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"1"
+							]
+						},
+						"description": "admin must loggin first\ninclude:\nx-access-header\ntoken"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product by Admin",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1MzQ2NjUyNDgsImRhdGEiOnsiaWQiOjQsInVzZXJuYW1lIjoiaW5kcmFrIiwiZW1haWwiOiJpbmRyYUBleGFtcGxlLmNvbSJ9LCJleHAiOjE1MzQ3NTE2NDh9.3JasbAU9zqtzBss-VHQJcboLTyLZLC9FBf5GtNIa3gI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idseller\":\"5\",\n\t\"idcategory\":\"2\",\n\t\"name\": \"Keripik\",\n\t\"price\": 15000,\n\t\"stock\": 10,\n\t\"brand\": \"Tempeku\",\n\t\"description\": \"Keripik Tempe Renyah yang dibuat langsung oleh warga tempatan Baju Ampar, sebagai upaya bersama membangun semangat desa\",\n\t\"type\": \"snack\",\n\t\"image\": \"https://cdn.sribu.com/assets/media/contest_detail/2016/2/kontes-desain-label-keripik-singkong-aruna-56b45f3bca6bcb4a00000002/f7dd864d1c.jpg\",\n\t\"rating\": 5,\n\t\"review\": \"Sangat renyah\"\n    }"
+						},
+						"url": {
+							"raw": "{{url}}/products/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								"5"
+							]
+						},
+						"description": "admin must loggin first\ninclude:\nx-access-header\ntoken"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "show Category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nameCategory\": \"cake\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/productcategory",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"productcategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search category by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nameCategory\": \"cake\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/productcategory/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"productcategory",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nameCategory\":\"snack\" \n}"
+						},
+						"url": {
+							"raw": "{{url}}/productcategory/add",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"productcategory",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nameCategory\":\"beverages\" \n}"
+						},
+						"url": {
+							"raw": "{{url}}/productcategory/2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"productcategory",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"pijital\",\n\t\"firstname\":\"indra\",\n\t\"lastname\":\"putra\",\n\t\"address\":\"villa hanglekir blok BB3 No. 6 Batam Center\",\n\t\"password\":\"pijital\",\n\t\"email\":\"indra@example.com\",\n\t\"phone\":\"08117541530\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/productcategory/remove/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"productcategory",
+								"remove",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sellers",
+			"item": [
+				{
+					"name": "Show Sellers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/sellers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sellers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Seller",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"sellerbaru\",\n\t\"firstname\":\"seller\",\n\t\"lastname\":\"baru\",\n\t\"address\":\"Jalan Legenda Malaka\",\n\t\"password\":\"helloukm\",\n\t\"email\":\"ukmkeren@example.com\",\n\t\"phone\":\"081234563456\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/sellers/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sellers",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Seller",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"sellerbaru\",\n\t\"password\":\"helloukm\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/sellers/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sellers",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Courier",
+			"item": [
+				{
+					"name": "Show Sellers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/couriers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"couriers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Courier Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"daren\",\n\t\"password\":\"helloukm\",\n\t\"price\":\"ukmkeren@example.com\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/couriers/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"couriers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Courier Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"daren\",\n\t\"password\":\"helloukm\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/couriers/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"couriers",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Courier account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "{{url}}/couriers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"couriers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

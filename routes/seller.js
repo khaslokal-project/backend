@@ -21,4 +21,4 @@ router.put('/:id', sellerController.update)
 // remove seller
 router.delete('/:id', sellerController.remove)
 
-module.exports = router;
+module.exports = router

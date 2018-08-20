@@ -1,22 +1,23 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken')
 
-const { Product } = require("../models");
+const { Product } = require('../models')
 
 const productController = {
+
   // validate user with token before update product
   validateUser: (req, res, next) => {
     jwt.verify(
-      req.headers["x-access-token"],
+      req.headers['x-access-token'],
       process.env.JWT_SECRET,
       (error, decode) => {
         if (error) {
-          next(error, "Token Expired!");
+          next(error, 'Token Expired!')
         } else {
-          req.body.AdminId = decode.id;
-          next();
+          req.body.AdminId = decode.id
+          next()
         }
       }
-    );
+    )
   },
 
   // add product after Admin validated
@@ -36,25 +37,25 @@ const productController = {
     })
       .then(newProduct => {
         res.json({
-          status: "success",
-          message: "Product added",
+          status: 'success',
+          message: 'Product added',
           data: newProduct
-        });
+        })
       })
       .catch(error => {
-        res.status(400).send(error);
-      });
+        res.status(400).send(error)
+      })
   },
 
   // get all product data
   get: (req, res, next) => {
     Product.findAll()
       .then(product => {
-        res.json(product);
+        res.json(product)
       })
       .catch(error => {
-        res.status(400).send(error);
-      });
+        res.status(400).send(error)
+      })
   },
 
     // edit product
@@ -89,40 +90,27 @@ const productController = {
         }
     },
 
-    // get data by id
-    search: (req, res, next)=> {
-        const id = Number(req.params.id)
-        Product.findById(id).then(product=> {
-            if(product){
-                res.send(product)
-            } else {
-                res.send({ message: 'Product not found' })
-            }
-        })
-        .catch(error=> {
-            res.status(400).send(error)
-        })
-    },
   // get data by id
   search: (req, res, next) => {
-    const id = Number(req.params.id);
+    const id = Number(req.params.id)
     Product.findById(id)
       .then(product => {
         if (product) {
-          res.send(product);
+          res.send(product)
         } else {
-          res.send({ message: "Product not found" });
+          res.send({ message: 'Product not found' })
         }
       })
       .catch(error => {
-        res.status(400).send(error);
-      });
+        res.status(400).send(error)
+      })
   },
 
+  // get data base on keyword
   searchByKeyword: (req, res, next) => {
-    const keyword = req.query.q;
-    const Sequelize = require("sequelize");
-    const Op = Sequelize.Op;
+    const keyword = req.query.q
+    const Sequelize = require('sequelize')
+    const Op = Sequelize.Op
     Product.findAll({
       where: {
         name: {
@@ -130,36 +118,36 @@ const productController = {
         }
       }
     }).then(result => {
-      console.log(result);
+      console.log(result)
       if (result) {
         res.status(200).send({
           result
-        });
+        })
       } else {
         res.status(404).send({
-          message: "Data not found"
-        });
+          message: 'Data not found'
+        })
       }
-    });
+    })
   },
 
   // remove product
   remove: (req, res, next) => {
-    const id = Number(req.params.id);
+    const id = Number(req.params.id)
     Product.destroy({
       where: { id: id }
     })
       .then(
         res.status(200).send({
-          message: "Product removed"
+          message: 'Product removed'
         })
       )
       .catch(error => {
         res.status(500).send({
           message: error
-        });
-      });
+        })
+      })
   }
-};
+}
 
-module.exports = productController;
+module.exports = productController

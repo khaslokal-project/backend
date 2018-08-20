@@ -4,20 +4,51 @@ const jwt = require("jsonwebtoken");
 const { Courier } = require("../models");
 
 const courierController = {
+
+  // validate user with token before get all data
+  // validateCourier: (req, res, next)=> {
+  //   jwt.verify(
+  //     req.header['x-access-token'],
+  //     process.env.JWT_SECRET,
+  //     (error, decode)=> {
+  //       if(error){
+  //         next(error, 'Token Expired!');
+  //       } else {
+  //         req.body.CourierId = decode.id
+  //         next()
+  //       }
+  //     }
+  //   )
+  // },
+
+  // get all courier
+  get: (req, res, next)=> {
+    Courier.findAll().then(courier=> {
+      res.status(200).send(courier)
+    })
+    .catch(error=> {
+      res.status(500).send(error)
+    })
+  },
+
   // add courier
-  add: (req, res) => {
-    const { username, password, price } = req.body;
+  add: (req, res, next) => {
+    const {
+      username,
+      password,
+      price
+    } = req.body;
     if (username && password && price) {
       const saltRounds = 5;
       bcrypt
         .hash(password, saltRounds)
         .then(hash => {
-          console.log("HASH", hash);
+          console.log('HASH', hash);
           return {
             username,
             password: hash,
             price
-          };
+          }
         })
         .then(newCourier => {
           Courier.build(newCourier)
@@ -26,6 +57,7 @@ const courierController = {
               res.status(200).send({
                 message: "Courier created",
                 courier: {
+                  id: courier.id,
                   username: courier.username,
                   password: courier.password,
                   price: courier.price
@@ -84,37 +116,39 @@ const courierController = {
     );
   },
 
+  // courier login
   login: (req, res) => {
-    const { username, password } = req.body;
+    const {
+      username,
+      password
+    } = req.body
     if (username && password) {
-      Courier.findOne({ where: { username } }).then(courier => {
-        const token = jwt.sign(
-          {
-            iat: Math.floor(Date.now() / 1000) - 30,
-            data: {
-              id: courier.id,
-              username: courier.username,
-              email: courier.email
-            }
-          },
-          process.env.JWT_SECRET,
-          {
-            expiresIn: "1d"
+      Courier.findOne({ where: { username } })
+      .then(courier => {
+        const token = jwt.sign({
+          iat: Math.floor(Date.now() / 1000) - 30,
+          data: {
+            id: courier.id,
+            username: courier.username,
+            email: courier.email
           }
-        );
-        bcrypt.compare(password, courier.password).then(response => {
+        }, process.env.JWT_SECRET, {
+            expiresIn: '1d'
+        })
+        bcrypt.compare(password, courier.password)
+        .then(response => {
           if (response) {
             res.status(200).send({
               message: "Thanks for logged in",
               token
-            });
+            })
           } else {
             res.status(400).send({
-              message: "log in failed"
-            });
+              message: 'log in failed'
+            })
           }
-        });
-      });
+        })
+      })
     } else {
       res.status(400).send({
         message: "Check your password"

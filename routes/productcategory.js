@@ -18,4 +18,4 @@ router.put('/:id', productCategoryController.update)
 // delete data to category
 router.delete('/:id', productCategoryController.remove)
 
-module.exports = router;
+module.exports = router

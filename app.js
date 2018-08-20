@@ -12,7 +12,7 @@ var productsRouter = require("./routes/products");
 var sellerRouter = require("./routes/seller");
 var productCategory = require("./routes/productcategory");
 var adminCourier = require("./routes/admincourier");
-var courierRouter = require("./routes/courier");
+var courierRouter = require("./routes/couriers");
 
 var app = express();
 

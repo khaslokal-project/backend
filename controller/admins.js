@@ -9,7 +9,8 @@ const adminController = {
     get: (req, res, next)=> {
         Admin.findAll().then(admin=> {
             res.status(200).send(admin)
-        }).catch(error=> {
+        })
+        .catch(error=> {
             res.status(500).send(error)
         })
     },
@@ -71,9 +72,7 @@ const adminController = {
                 email: req.body.email,
                 updatedAt: new Date()
             },{
-                where: {
-                    id:id
-                }
+                where: { id:id }
             })
         .then(()=> {
             res.status(200).send({
