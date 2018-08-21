@@ -158,9 +158,7 @@ const productController = {
       }
     }).then(result => {
       if (result) {
-        res.status(200).send({
-          result
-        });
+        res.status(200).send(result);
       } else {
         res.status(404).send({
           message: "No data"
