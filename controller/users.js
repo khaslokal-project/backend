@@ -1,5 +1,5 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const { User } = require("../models");
 
@@ -133,23 +133,23 @@ const userController = {
   },
 
   login: (req, res) => {
-    const { username, password } = req.body;
+    const { 
+      username,
+      password 
+    } = req.body
     if (username && password) {
-      User.findOne({ where: { username } }).then(user => {
-        const token = jwt.sign(
-          {
-            iat: Math.floor(Date.now() / 1000) - 30,
-            data: {
-              id: user.id,
-              username: user.username,
-              email: user.email
-            }
-          },
-          process.env.JWT_SECRET,
-          {
-            expiresIn: "1d"
+      User.findOne({ where: { username } })
+      .then(user => {
+        const token = jwt.sign({
+          iat: Math.floor(Date.now() / 1000) - 30,
+          data: {
+            id: user.id,
+            username: user.username,
+            email: user.email
           }
-        );
+        }, process.env.JWT_SECRET, {
+          expiresIn: '1d'
+        })
         bcrypt.compare(password, user.password).then(response => {
           if (response) {
             res.status(200).send({
