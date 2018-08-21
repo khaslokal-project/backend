@@ -9,4 +9,7 @@ router.get('/', admincourierController.get)
 // add new data
 router.post('/', admincourierController.add)
 
+// update data
+router.put('/', admincourierController.update)
+
 module.exports = router
