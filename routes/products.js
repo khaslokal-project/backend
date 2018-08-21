@@ -15,6 +15,6 @@ router.delete("/:id", productController.remove);
 
 router.post("/search/:name", productController.searchByKeyword);
 
-router.post("/category/:idcategory", productController.searchByCategory);
+router.get("/category/:idcategory", productController.searchByCategory);
 
 module.exports = router;
