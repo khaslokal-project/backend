@@ -1,12 +1,13 @@
-const { Products, productCategory } = require("../models");
-const Sequelize = require("sequelize");
+const { Products } = require("../models");
 
 const categoryController = {
   // search
-  searchByCategory: (req, res, next) => {
-    Sequelize.query(
-      "select Products.name, productCategories.nameCategory from Products, productCategories where Products.idcategory = productCategories.id and productCategories.id =1"
-    ).then(result => {
+  searchByCategory: (req, res) => {
+    Products.findAll({
+      where: {
+        idcategory: 1
+      }
+    }).then(result => {
       console.log(result);
       if (result) {
         res.status(200).send({
@@ -14,7 +15,7 @@ const categoryController = {
         });
       } else {
         res.status(404).send({
-          message: "Data not found"
+          message: "No data"
         });
       }
     });
