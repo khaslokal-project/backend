@@ -30,6 +30,16 @@ app.use((req, res, next)=> {
   next()
 })
 
+app.use(
+  cors({
+    origin: [
+      "*"
+    ],
+    methods: ["GET", "HEAD", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
+    credentials: true
+  })
+)
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/admins", adminsRouter);
