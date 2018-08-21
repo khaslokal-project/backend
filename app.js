@@ -32,9 +32,7 @@ app.use((req, res, next)=> {
 
 app.use(
   cors({
-    origin: [
-      "*"
-    ],
+    origin: [ "http://localhost:3000" ],
     methods: ["GET", "HEAD", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
     credentials: true
   })
