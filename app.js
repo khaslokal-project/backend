@@ -30,13 +30,13 @@ app.use((req, res, next)=> {
   next()
 })
 
-app.use(
-  cors({
-    origin: [ "http://localhost:3000" ],
-    methods: ["GET", "HEAD", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
-    credentials: false
-  })
-)
+// app.use(
+//   cors({
+//     origin: [ "http://localhost:3000" ],
+//     methods: ["GET", "HEAD", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
+//     credentials: false
+//   })
+// )
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
