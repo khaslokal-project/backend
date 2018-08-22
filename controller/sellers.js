@@ -116,7 +116,7 @@ const sellerController = {
     );
   },
 
-  // search seller by id
+  // search seller by id && show products
   search: (req, res, next) => {
     const id = Number(req.params.id);
     Seller.findById(id)
