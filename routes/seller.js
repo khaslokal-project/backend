@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const sellerController = require("../controller/sellers");
+const sellerController = require("../controller/seller");
 
 // add new seller
 router.post("/register", sellerController.register);
@@ -15,8 +15,11 @@ router.get("/:id", sellerController.search);
 // get data seller by id
 router.post("/login", sellerController.login);
 
-// search by usename
+// search by username
 router.post("/search/:username", sellerController.searchByKeyword);
+
+// search seller product
+router.post("/:");
 
 // edit seller data
 router.put("/:id", sellerController.update);

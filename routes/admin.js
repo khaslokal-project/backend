@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const adminController = require('../controller/admins')
+const adminController = require('../controller/admin')
 
 // admin routes view
 router.get('/', adminController.get)

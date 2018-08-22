@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const courierController = require('../controller/couriers');
+const courierController = require('../controller/courier');
 
 // get all courier
 router.get('/', courierController.get)

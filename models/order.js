@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       iduser: DataTypes.INTEGER,
       idorderitem: DataTypes.INTEGER,
-      idcourier: DataTypes.INTEGER
+      idcourier: DataTypes.INTEGER,
+      status: DataTypes.STRING
     },
     {}
   );
