@@ -11,8 +11,6 @@ setup.sh
 
 .DS_Store
 
-config/
-
 *.mwb
 
 db/
