@@ -5,37 +5,37 @@
 ## Tables
 
 ```
+mysql> show tables;
 +-------------------+
 | Tables_in_ukmkita |
 +-------------------+
 | Admins            |
 | Couriers          |
+| orderItems        |
+| Orders            |
+| productCategories |
 | Products          |
 | Sellers           |
+| SequelizeMeta     |
 | Users             |
-| adminCouriers     |
-| productCategories |
 +-------------------+
 ```
 
-## DESC products table
+## DESC Products table
 
 ```
+mysql> desc Products;
 +-------------+--------------+------+-----+---------+----------------+
 | Field       | Type         | Null | Key | Default | Extra          |
 +-------------+--------------+------+-----+---------+----------------+
 | id          | int(11)      | NO   | PRI | NULL    | auto_increment |
-| idseller    | int(11)      | YES  |     | NULL    |                |
-| idcategory  | int(11)      | YES  |     | NULL    |                |
+| idseller    | int(11)      | YES  | MUL | NULL    |                |
+| idcategory  | int(11)      | YES  | MUL | NULL    |                |
 | name        | varchar(255) | YES  |     | NULL    |                |
 | price       | varchar(255) | YES  |     | NULL    |                |
-| stock       | varchar(255) | YES  |     | NULL    |                |
 | brand       | varchar(255) | YES  |     | NULL    |                |
 | description | varchar(255) | YES  |     | NULL    |                |
-| type        | varchar(255) | YES  |     | NULL    |                |
-| image       | longblob     | YES  |     | NULL    |                |
-| rating      | int(11)      | YES  |     | NULL    |                |
-| review      | varchar(255) | YES  |     | NULL    |                |
+| image       | varchar(255) | YES  |     | NULL    |                |
 | createdAt   | datetime     | NO   |     | NULL    |                |
 | updatedAt   | datetime     | NO   |     | NULL    |                |
 +-------------+--------------+------+-----+---------+----------------+
@@ -48,13 +48,13 @@
 | Field        | Type         | Null | Key | Default | Extra          |
 +--------------+--------------+------+-----+---------+----------------+
 | id           | int(11)      | NO   | PRI | NULL    | auto_increment |
-| nameCategory | varchar(255) | YES  |     | NULL    |                |
+| name         | varchar(255) | YES  |     | NULL    |                |
 | createdAt    | datetime     | NO   |     | NULL    |                |
 | updatedAt    | datetime     | NO   |     | NULL    |                |
 +--------------+--------------+------+-----+---------+----------------+
 ```
 
-## DESC users table
+## DESC Users table
 
 ```
 +-----------+--------------+------+-----+---------+----------------+
@@ -73,7 +73,7 @@
 +-----------+--------------+------+-----+---------+----------------+
 ```
 
-## DESC sellers table
+## DESC Sellers table
 
 ```
 +-----------+--------------+------+-----+---------+----------------+
@@ -92,31 +92,29 @@
 +-----------+--------------+------+-----+---------+----------------+
 ```
 
-## DESC adminCourier table
+## DESC Admin table
 
 ```
-+-------------------+--------------+------+-----+---------+----------------+
-| Field             | Type         | Null | Key | Default | Extra          |
-+-------------------+--------------+------+-----+---------+----------------+
-| id                | int(11)      | NO   | PRI | NULL    | auto_increment |
-| addressSeller     | varchar(255) | YES  |     | NULL    |                |
-| nameProduct       | varchar(255) | YES  |     | NULL    |                |
-| quantity          | varchar(255) | YES  |     | NULL    |                |
-| priceProduct      | varchar(255) | YES  |     | NULL    |                |
-| totalProductPrice | varchar(255) | YES  |     | NULL    |                |
-| tariff            | varchar(255) | YES  |     | NULL    |                |
-| grandTotal        | int(11)      | YES  |     | NULL    |                |
-| iduser            | varchar(255) | YES  |     | NULL    |                |
-| addressUser       | varchar(255) | YES  |     | NULL    |                |
-| phone             | varchar(255) | YES  |     | NULL    |                |
-| createdAt         | datetime     | NO   |     | NULL    |                |
-| updatedAt         | datetime     | NO   |     | NULL    |                |
-+-------------------+--------------+------+-----+---------+----------------+
+mysql> desc Admins;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| id        | int(11)      | NO   | PRI | NULL    | auto_increment |
+| username  | varchar(255) | YES  |     | NULL    |                |
+| firstname | varchar(255) | YES  |     | NULL    |                |
+| lastname  | varchar(255) | YES  |     | NULL    |                |
+| password  | varchar(255) | YES  |     | NULL    |                |
+| email     | varchar(255) | YES  |     | NULL    |                |
+| createdAt | datetime     | NO   |     | NULL    |                |
+| updatedAt | datetime     | NO   |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
 ```
 
-## DESC couriers table
+## DESC Courier table
 
 ```
+mysql> desc Couriers;
 +-----------+--------------+------+-----+---------+----------------+
 | Field     | Type         | Null | Key | Default | Extra          |
 +-----------+--------------+------+-----+---------+----------------+
@@ -124,10 +122,44 @@
 | username  | varchar(255) | YES  |     | NULL    |                |
 | password  | varchar(255) | YES  |     | NULL    |                |
 | price     | varchar(255) | YES  |     | NULL    |                |
+| phone     | varchar(255) | YES  |     | NULL    |                |
 | createdAt | datetime     | NO   |     | NULL    |                |
 | updatedAt | datetime     | NO   |     | NULL    |                |
 +-----------+--------------+------+-----+---------+----------------+
 ```
+
+## DESC orderItem table
+
+```
+mysql> desc orderItems;
++-----------+------------+------+-----+---------+----------------+
+| Field     | Type       | Null | Key | Default | Extra          |
++-----------+------------+------+-----+---------+----------------+
+| id        | int(11)    | NO   | PRI | NULL    | auto_increment |
+| idproduct | int(11)    | YES  | MUL | NULL    |                |
+| idcourier | int(11)    | YES  | MUL | NULL    |                |
+| total     | bigint(20) | NO   |     | NULL    |                |
+| createdAt | datetime   | NO   |     | NULL    |                |
+| updatedAt | datetime   | NO   |     | NULL    |                |
++-----------+------------+------+-----+---------+----------------+
+```
+
+## DESC Orders table
+
+```
+mysql> desc Orders;
++-------------+----------+------+-----+---------+----------------+
+| Field       | Type     | Null | Key | Default | Extra          |
++-------------+----------+------+-----+---------+----------------+
+| id          | int(11)  | NO   | PRI | NULL    | auto_increment |
+| iduser      | int(11)  | YES  | MUL | NULL    |                |
+| idorderitem | int(11)  | YES  | MUL | NULL    |                |
+| idcourier   | int(11)  | YES  | MUL | NULL    |                |
+| createdAt   | datetime | NO   |     | NULL    |                |
+| updatedAt   | datetime | NO   |     | NULL    |                |
++-------------+----------+------+-----+---------+----------------+
+```
+
 
 ## Showing product category
 
@@ -182,3 +214,41 @@ ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk2` FOREIGN KEY (`idseller`) REFERE
 ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk3` FOREIGN KEY (`icourier`) REFERENCES `Courier`(`id`);
 
 ALTER TABLE `Sellers` ADD CONSTRAINT `Sellers_fk0` FOREIGN KEY (`idproduct`) REFERENCES `Products`(`id`);
+
+
+### REST API Endpoints
+
+
+| Endpoint          | HTTP   | Description              |
+| ------------------| ------ | -------------------------|
+| `/users`          | GET    | Get all users            |
+| `/users/:id`      | PUT    | update one users by id   |
+| `/users/register` | POST   | Create new users         |
+| `/users/login`    | POST   | users login              |
+| `/userss/:id`     | DELETE | Delete one users by id   |
+
+| Endpoint            | HTTP   | Description              |
+| --------------------| ------ | -------------------------|
+| `/sellers`          | GET    | Get all sellers          |
+| `/sellers/:id`      | PUT    | update one sellers by id |
+| `/sellers/register` | POST   | Create new sellers       |
+| `/sellers/login`    | POST   | sellers login            |
+| `/sellerss/:id`     | DELETE | Delete one sellers by id |
+
+| Endpoint                       | HTTP   | Description               |
+| -------------------------------| ------ | --------------------------|
+| `/products`                    | GET    | Get all products          |
+| `/products/`                   | POST   | Post new Product          |
+| `/products/:id`                | PUT    | update one products by id |
+| `/products/serach/:name`       | POST   | search products by keyword|
+| `/products/category/idcategory`| POST   | Create new products       |
+| `/products/login`              | POST   | products login            |
+| `/productss/:id`               | DELETE | Delete one sellers by id  |
+
+| Endpoint                   | HTTP   | Description                      |
+| ---------------------------| ------ | ---------------------------------|
+| `/productcategory/`        | GET    | Get all sellers                  |
+| `/productcategory/:id`     | PUT    | update one productcategory by id |
+| `/productcategory/`        | POST   | Create new productcategory       |
+| `/productcategorys/:id`    | DELETE | Delete one sellers by id         |
+
