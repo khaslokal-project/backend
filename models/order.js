@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 module.exports = (sequelize, DataTypes) => {
   var Order = sequelize.define('Order', {
     iduser: DataTypes.INTEGER,
