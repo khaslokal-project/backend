@@ -45,9 +45,9 @@ const productCategoryController = {
     // update category
     update: (req, res, next)=> {
       const id = Number(req.params.id)
-      if(req.body.nameCategory){
+      if(req.body.name){
         productCategory.update({
-          nameCategory: req.body.nameCategory,
+          name: req.body.name,
           updatedAt: new Date()
         }, {
           where: {id: id}

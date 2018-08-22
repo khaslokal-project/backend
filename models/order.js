@@ -1,13 +1,12 @@
-'use strict';
+"use strict";
 module.exports = (sequelize, DataTypes) => {
   var Order = sequelize.define('Order', {
-    idproduct: DataTypes.INTEGER,
     iduser: DataTypes.INTEGER,
+    idorderitem: DataTypes.INTEGER,
     idcourier: DataTypes.INTEGER,
-    idseller: DataTypes.INTEGER,
-    total: DataTypes.INTEGER
+    status: DataTypes.STRING
   }, {});
-  Order.associate = function(models) {
+  Courier.associate = function(models) {
     // associations can be defined here
   };
   return Order;

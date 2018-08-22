@@ -16,40 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `adminCouriers`
---
-
-DROP TABLE IF EXISTS `adminCouriers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `adminCouriers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `addressSeller` varchar(255) DEFAULT NULL,
-  `nameProduct` varchar(255) DEFAULT NULL,
-  `quantity` varchar(255) DEFAULT NULL,
-  `priceProduct` varchar(255) DEFAULT NULL,
-  `totalProductPrice` varchar(255) DEFAULT NULL,
-  `tariff` varchar(255) DEFAULT NULL,
-  `grandTotal` int(11) DEFAULT NULL,
-  `iduser` varchar(255) DEFAULT NULL,
-  `addressUser` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `createdAt` datetime NOT NULL,
-  `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `adminCouriers`
---
-
-LOCK TABLES `adminCouriers` WRITE;
-/*!40000 ALTER TABLE `adminCouriers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `adminCouriers` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Admins`
 --
 
@@ -91,10 +57,12 @@ CREATE TABLE `Couriers` (
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `price` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,8 +71,34 @@ CREATE TABLE `Couriers` (
 
 LOCK TABLES `Couriers` WRITE;
 /*!40000 ALTER TABLE `Couriers` DISABLE KEYS */;
-INSERT INTO `Couriers` VALUES (1,'daren','$2b$05$n8g7USPubmAZYYQGHTSnpezV4s0rfv/IAwXwGARhUO8x320qYUa.q','10000','2018-08-20 08:23:42','2018-08-20 08:37:12');
 /*!40000 ALTER TABLE `Couriers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orderItems`
+--
+
+DROP TABLE IF EXISTS `orderItems`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `orderItems` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idproduct` int(11) NOT NULL,
+  `idcourier` int(11) NOT NULL,
+  `total` bigint(20) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orderItems`
+--
+
+LOCK TABLES `orderItems` WRITE;
+/*!40000 ALTER TABLE `orderItems` DISABLE KEYS */;
+/*!40000 ALTER TABLE `orderItems` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -116,22 +110,12 @@ DROP TABLE IF EXISTS `Orders`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idproduct` int(11) DEFAULT NULL,
   `iduser` int(11) DEFAULT NULL,
+  `idorderitem` int(11) DEFAULT NULL,
   `idcourier` int(11) DEFAULT NULL,
-  `idseller` int(11) DEFAULT NULL,
-  `total` bigint(20) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `Orders_fk0` (`iduser`),
-  KEY `Orders_fk1` (`idproduct`),
-  KEY `Orders_fk2` (`idseller`),
-  KEY `Orders_fk3` (`idcourier`),
-  CONSTRAINT `Orders_fk0` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`),
-  CONSTRAINT `Orders_fk1` FOREIGN KEY (`idproduct`) REFERENCES `products` (`id`),
-  CONSTRAINT `Orders_fk2` FOREIGN KEY (`idseller`) REFERENCES `sellers` (`id`),
-  CONSTRAINT `Orders_fk3` FOREIGN KEY (`idcourier`) REFERENCES `couriers` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -186,13 +170,12 @@ CREATE TABLE `Products` (
   `stock` varchar(255) DEFAULT NULL,
   `brand` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `rating` int(11) DEFAULT NULL,
-  `review` varchar(255) DEFAULT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `Products_fk0` (`idcategory`),
+  CONSTRAINT `Products_fk0` FOREIGN KEY (`idcategory`) REFERENCES `productcategories` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -202,7 +185,7 @@ CREATE TABLE `Products` (
 
 LOCK TABLES `Products` WRITE;
 /*!40000 ALTER TABLE `Products` DISABLE KEYS */;
-INSERT INTO `Products` VALUES (1,5,5,'Tempe','15000','10','Tempeku','Keripik Tempe Renyah yang dibuat langsung oleh warga tempatan Baju Ampar, sebagai upaya bersama membangun semangat desa','snack','keripik.jpg',5,'Sangat renyah','2018-08-19 07:13:37','2018-08-20 12:59:24'),(6,5,6,'Melayu Tea','10000','10','Melayu Tea','Minuman teh melayu','minuman','meltea.jpg',5,'Sangat segar','2018-08-19 14:37:46','2018-08-20 13:04:20'),(7,5,7,'Tenun Motif Batam','1000000','10','Batam Tenun','Tenun aseli batam','kerajinan','tenunbatam.jpg',5,'padu padan warna yang unik','2018-08-19 14:40:30','2018-08-20 13:06:38'),(8,6,3,'Keripik','15000','10','Tempeku','Keripik Tempe Renyah yang dibuat langsung oleh warga tempatan Baju Ampar, sebagai upaya bersama membangun semangat desa','snack','https://cdn.sribu.com/assets/media/contest_detail/2016/2/kontes-desain-label-keripik-singkong-aruna-56b45f3bca6bcb4a00000002/f7dd864d1c.jpg',5,'Sangat menyenangkan','2018-08-20 09:42:41','2018-08-20 09:42:41');
+INSERT INTO `Products` VALUES (1,5,5,'Tempe','15000','10','Tempeku','Keripik Tempe Renyah yang dibuat langsung oleh warga tempatan Baju Ampar, sebagai upaya bersama membangun semangat desa','keripik.jpg','2018-08-19 07:13:37','2018-08-20 12:59:24'),(6,5,6,'Melayu Tea','10000','10','Melayu Tea','Minuman teh melayu','meltea.jpg','2018-08-19 14:37:46','2018-08-20 13:04:20'),(7,5,7,'Tenun Motif Batam','1000000','10','Batam Tenun','Tenun aseli batam','tenunbatam.jpg','2018-08-19 14:40:30','2018-08-20 13:06:38'),(8,6,3,'Keripik','15000','10','Tempeku','Keripik Tempe Renyah yang dibuat langsung oleh warga tempatan Baju Ampar, sebagai upaya bersama membangun semangat desa','https://cdn.sribu.com/assets/media/contest_detail/2016/2/kontes-desain-label-keripik-singkong-aruna-56b45f3bca6bcb4a00000002/f7dd864d1c.jpg','2018-08-20 09:42:41','2018-08-20 09:42:41');
 /*!40000 ALTER TABLE `Products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,6 +198,7 @@ DROP TABLE IF EXISTS `Sellers`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Sellers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idproduct` int(11) NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
@@ -234,7 +218,7 @@ CREATE TABLE `Sellers` (
 
 LOCK TABLES `Sellers` WRITE;
 /*!40000 ALTER TABLE `Sellers` DISABLE KEYS */;
-INSERT INTO `Sellers` VALUES (1,'sellerbaru','seller','baru','Jalan Legenda Malaka','$2b$05$5ZCXdFpnQbcLYGgtv0oyg.s.jU0L9s0lcFDV06abYKlZuQzJcoVOu','ukmkeren@example.com','081234563456','2018-08-19 10:39:03','2018-08-19 10:39:03'),(2,'wellyandriani','welly','andriani','jakarta','$2b$05$yPavD.O6KhCbo/6zdj0/0eVxz.rsIsyrEvdOQRYUA2/b4a2fvs336','wellyandriani97@gmail.com','09677673423','2018-08-19 10:49:01','2018-08-19 13:51:36'),(3,'indraputra','indra','putra','mitraraya','$2b$05$rSGHv5v2ehUKv62YE1Fp4.OTTsDmVqERnzMcwz2nnj1p30zNHmv0W','della.kutsser@yahoo.com','9078676723','2018-08-19 13:36:44','2018-08-19 13:36:44');
+INSERT INTO `Sellers` VALUES (1,0,'sellerbaru','seller','baru','Jalan Legenda Malaka','$2b$05$5ZCXdFpnQbcLYGgtv0oyg.s.jU0L9s0lcFDV06abYKlZuQzJcoVOu','ukmkeren@example.com','081234563456','2018-08-19 10:39:03','2018-08-19 10:39:03'),(2,0,'wellyandriani','welly','andriani','jakarta','$2b$05$yPavD.O6KhCbo/6zdj0/0eVxz.rsIsyrEvdOQRYUA2/b4a2fvs336','wellyandriani97@gmail.com','09677673423','2018-08-19 10:49:01','2018-08-19 13:51:36'),(3,0,'indraputra','indra','putra','mitraraya','$2b$05$rSGHv5v2ehUKv62YE1Fp4.OTTsDmVqERnzMcwz2nnj1p30zNHmv0W','della.kutsser@yahoo.com','9078676723','2018-08-19 13:36:44','2018-08-19 13:36:44');
 /*!40000 ALTER TABLE `Sellers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,7 +242,7 @@ CREATE TABLE `SequelizeMeta` (
 
 LOCK TABLES `SequelizeMeta` WRITE;
 /*!40000 ALTER TABLE `SequelizeMeta` DISABLE KEYS */;
-INSERT INTO `SequelizeMeta` VALUES ('20180818061114-create-admin.js'),('20180818062158-create-product.js'),('20180818063120-create-user.js'),('20180818063213-create-seller.js'),('20180818065357-create-admin-courier.js'),('20180818070406-create-courier.js'),('20180818070645-create-product-category.js'),('20180821075342-create-order.js');
+INSERT INTO `SequelizeMeta` VALUES ('20180818061114-create-admin.js'),('20180818062158-create-product.js'),('20180818063120-create-user.js'),('20180818063213-create-seller.js'),('20180818070406-create-courier.js'),('20180818070645-create-product-category.js'),('20180821075342-create-order.js'),('20180821143535-create-order-item.js');
 /*!40000 ALTER TABLE `SequelizeMeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -302,4 +286,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-21 15:14:01
+-- Dump completed on 2018-08-22 15:00:10

@@ -20,26 +20,14 @@ module.exports = {
       price: {
         type: Sequelize.STRING
       },
-      stock: {
-        type: Sequelize.STRING
-      },
       brand: {
         type: Sequelize.STRING
       },
       description: {
         type: Sequelize.STRING
       },
-      type: {
-        type: Sequelize.STRING
-      },
       image: {
         type: Sequelize.BLOB('long')
-      },
-      rating: {
-        type: Sequelize.INTEGER
-      },
-      review: {
-        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

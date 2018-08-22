@@ -36,7 +36,8 @@ const courierController = {
     const {
       username,
       password,
-      price
+      price,
+      phone
     } = req.body;
     if (username && password && price) {
       const saltRounds = 5;
@@ -47,7 +48,8 @@ const courierController = {
           return {
             username,
             password: hash,
-            price
+            price,
+            phone
           }
         })
         .then(newCourier => {
@@ -60,7 +62,8 @@ const courierController = {
                   id: courier.id,
                   username: courier.username,
                   password: courier.password,
-                  price: courier.price
+                  price: courier.price,
+                  phone: courier.phone
                 }
               });
             })
@@ -85,6 +88,7 @@ const courierController = {
         {
           username: req.body.username,
           price: req.body.price,
+          phone: req.body.phone,
           updatedAt: new Date()
         },
         {
@@ -130,7 +134,7 @@ const courierController = {
           data: {
             id: courier.id,
             username: courier.username,
-            email: courier.email
+            password: courier.password
           }
         }, process.env.JWT_SECRET, {
             expiresIn: '1d'
