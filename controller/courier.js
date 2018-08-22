@@ -123,39 +123,49 @@ const courierController = {
   // courier login
   login: (req, res) => {
     const {
-      username,
-      password
+        username,
+        password
     } = req.body
+
     if (username && password) {
       Courier.findOne({ where: { username } })
       .then(courier => {
-        const token = jwt.sign({
-          iat: Math.floor(Date.now() / 1000) - 30,
-          data: {
-            id: courier.id,
-            username: courier.username,
-            password: courier.password
-          }
-        }, process.env.JWT_SECRET, {
-            expiresIn: '1d'
-        })
-        bcrypt.compare(password, courier.password)
-        .then(response => {
-          if (response) {
-            res.status(200).send({
-              message: "Thanks for logged in",
-              token
-            })
-          } else {
-            res.status(400).send({
-              message: 'log in failed'
-            })
-          }
-        })
-      })
+        if (courier) {
+          bcrypt.compare(password, courier.password)
+          .then(response => {
+            if (response) {
+              const token = jwt.sign(
+                {
+                  iat: Math.floor(Date.now() / 1000) - 30,
+                  data: {
+                    id: courier.id,
+                    username: courier.username,
+                  }
+                },
+                process.env.JWT_SECRET,
+                {
+                  expiresIn: "1d"
+                }
+              );
+              res.status(200).send({
+                message: "Thanks for logged in",
+                token
+              });
+            } else {
+              res.status(400).send({
+                message: "log in failed"
+              });
+            }
+          });
+        } else {
+          res.status(400).send({
+            message: "Check your login username"
+          });
+        }
+      });
     } else {
       res.status(400).send({
-        message: "Check your password"
+        message: "Check your login credentials!"
       });
     }
   },

@@ -15,8 +15,11 @@ router.get("/:id", sellerController.search);
 // get data seller by id
 router.post("/login", sellerController.login);
 
-// search by usename
+// search by username
 router.post("/search/:username", sellerController.searchByKeyword);
+
+// search seller product
+router.post("/:");
 
 // edit seller data
 router.put("/:id", sellerController.update);

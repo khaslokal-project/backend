@@ -1,5 +1,18 @@
 #!/usr/bin/env node
 
+require('dotenv-extended').load({
+  encoding: 'utf8',
+  silent: true,
+  path: '.env',
+  defaults: '.env.defaults',
+  schema: '.env.schema',
+  errorOnMissing: true,
+  errorOnExtra: true,
+  assignToProcessEnv: true,
+  overrideProcessEnv: false
+})
+
+
 /**
  * Module dependencies.
  */
@@ -8,7 +21,6 @@ var app = require('./app');
 var debug = require('debug')('khaslokal:server');
 var http = require('http');
 
-require('dotenv').config()
 
 /**
  * Get port from environment and store in Express.
@@ -26,7 +38,6 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-
 server.listen(port, ()=> {
   console.log(`app is on port ${port}`);
 });

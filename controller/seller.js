@@ -169,39 +169,51 @@ const sellerController = {
   },
 
   login: (req, res) => {
-    const { username, password } = req.body;
+    const {
+        username,
+        password
+    } = req.body
+
     if (username && password) {
-      Seller.findOne({ where: { username } }).then(seller => {
-        const token = jwt.sign(
-          {
-            iat: Math.floor(Date.now() / 1000) - 30,
-            data: {
-              id: seller.id,
-              username: seller.username,
-              email: seller.email
+      Seller.findOne({ where: { username } })
+      .then(seller => {
+        if (seller) {
+          bcrypt.compare(password, seller.password)
+          .then(response => {
+            if (response) {
+              const token = jwt.sign(
+                {
+                  iat: Math.floor(Date.now() / 1000) - 30,
+                  data: {
+                    id: seller.id,
+                    username: seller.username,
+                    email: seller.email
+                  }
+                },
+                process.env.JWT_SECRET,
+                {
+                  expiresIn: "1d"
+                }
+              );
+              res.status(200).send({
+                message: "Thanks for logged in",
+                token
+              });
+            } else {
+              res.status(400).send({
+                message: "log in failed"
+              });
             }
-          },
-          process.env.JWT_SECRET,
-          {
-            expiresIn: "1d"
-          }
-        );
-        bcrypt.compare(password, seller.password).then(response => {
-          if (response) {
-            res.status(200).send({
-              message: "Thanks for logged in",
-              token
-            });
-          } else {
-            res.status(400).send({
-              message: "log in failed"
-            });
-          }
-        });
+          });
+        } else {
+          res.status(400).send({
+            message: "Check your login username"
+          });
+        }
       });
     } else {
       res.status(400).send({
-        message: "Check your password"
+        message: "Check your login credentials!"
       });
     }
   },

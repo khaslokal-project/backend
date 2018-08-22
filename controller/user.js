@@ -154,36 +154,47 @@ const userController = {
       username,
       password 
     } = req.body
+
     if (username && password) {
       User.findOne({ where: { username } })
       .then(user => {
-        const token = jwt.sign({
-          iat: Math.floor(Date.now() / 1000) - 30,
-          data: {
-            id: user.id,
-            username: user.username,
-            email: user.email
-          }
-        }, process.env.JWT_SECRET, {
-          expiresIn: '1d'
-        })
-        bcrypt.compare(password, user.password)
-        .then(response => {
-          if (response) {
-            res.status(200).send({
-              message: "Logged in",
-              token
-            });
-          } else {
-            res.status(400).send({
-              message: "Login failed"
-            });
-          }
-        });
-      });
+        if(user){
+          bcrypt.compare(password, user.password)
+          .then(response => {
+            if (response) {
+              const token = jwt.sign(
+                {
+                  iat: Math.floor(Date.now() / 1000) - 30,
+                  data: {
+                    id: user.id,
+                    username: user.username,
+                    email: user.email
+                  }
+                },
+                process.env.JWT_SECRET,
+                {
+                  expiresIn: "1d"
+                }
+              );
+              res.status(200).send({
+                message: "Thanks for logged in",
+                token
+              });
+            } else {
+              res.status(400).send({
+                message: "log in failed"
+              });
+            }
+          });
+        } else {
+          res.status(400).send({
+            message: "Check your username"
+          });
+        }
+      })
     } else {
       res.status(400).send({
-        message: "Check your password"
+        message: "Check your login credentials!"
       });
     }
   },
