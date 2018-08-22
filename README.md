@@ -243,7 +243,7 @@ ALTER TABLE `Sellers` ADD CONSTRAINT `Sellers_fk0` FOREIGN KEY (`idproduct`) REF
 | `/products/serach/:name`       | POST   | search products by keyword|
 | `/products/category/idcategory`| POST   | Create new products       |
 | `/products/login`              | POST   | products login            |
-| `/productss/:id`               | DELETE | Delete one sellers by id  |
+| `/productss/:id`               | DELETE | Delete one product by id  |
 
 | Endpoint                   | HTTP   | Description                      |
 | ---------------------------| ------ | ---------------------------------|
