@@ -170,7 +170,7 @@ mysql> select Products.name, productCategories.nameCategory
 1 row in set (0.00 sec)
 ```
 
-sequelize model:generate --name Order --attributes idproduct:integer,iduser:integer,idcourier:integer,idseller:integer,total:integer(BIGINT)
+sequelize model:generate --name orderItem --attributes idproduct:integer,total:integer(BIGINT)
 
 
 ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk0` FOREIGN KEY (`iduser`) REFERENCES `User`(`id`);
@@ -181,3 +181,4 @@ ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk2` FOREIGN KEY (`idseller`) REFERE
 
 ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk3` FOREIGN KEY (`icourier`) REFERENCES `Courier`(`id`);
 
+ALTER TABLE `Sellers` ADD CONSTRAINT `Sellers_fk0` FOREIGN KEY (`idproduct`) REFERENCES `Products`(`id`);
