@@ -6,13 +6,12 @@ var logger = require("morgan");
 var cors = require("cors");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var adminsRouter = require("./routes/admins");
-var productsRouter = require("./routes/products");
+var usersRouter = require("./routes/user");
+var adminsRouter = require("./routes/admin");
+var productsRouter = require("./routes/product");
 var sellerRouter = require("./routes/seller");
 var productCategory = require("./routes/productcategory");
-var adminCourier = require("./routes/admincourier");
-var courierRouter = require("./routes/couriers");
+var courierRouter = require("./routes/courier");
 // var categoryRouter = require("./routes/categoryquery");
 
 var app = express();
@@ -44,7 +43,6 @@ app.use("/admins", adminsRouter);
 app.use("/products", productsRouter);
 app.use("/sellers", sellerRouter);
 app.use("/productcategory", productCategory);
-app.use("/admincourier", adminCourier);
 app.use("/couriers", courierRouter);
 // app.use("/category", categoryRouter);
 

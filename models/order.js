@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     iduser: DataTypes.INTEGER,
     idorderitem: DataTypes.INTEGER,
     idcourier: DataTypes.INTEGER,
+    status: DataTypes.STRING
   }, {});
   Courier.associate = function(models) {
     // associations can be defined here
