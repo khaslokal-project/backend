@@ -1,37 +1,21 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const { Courier } = require("../models");
+const { orderItem } = require("../models");
 
-const courierController = {
-
-  // validate user with token before get all data
-  // validateCourier: (req, res, next)=> {
-  //   jwt.verify(
-  //     req.header['x-access-token'],
-  //     process.env.JWT_SECRET,
-  //     (error, decode)=> {
-  //       if(error){
-  //         next(error, 'Token Expired!');
-  //       } else {
-  //         req.body.CourierId = decode.id
-  //         next()
-  //       }
-  //     }
-  //   )
-  // },
+const orderItemController = {
 
   // get all courier
   get: (req, res, next)=> {
-    Courier.findAll().then(courier=> {
-      res.status(200).send(courier)
+    orderItem.findAll().then(orderitem=> {
+      res.status(200).send(orderitem)
     })
     .catch(error=> {
       res.status(500).send(error)
     })
   },
 
-  // add courier
+  // add orderItem
   add: (req, res, next) => {
     const {
       username,
@@ -166,4 +150,4 @@ const courierController = {
   }
 };
 
-module.exports = courierController;
+module.exports = orderItemController;

@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
   var Order = sequelize.define(
-    "Orders",
+    "Order",
     {
       iduser: DataTypes.INTEGER,
       idorderitem: DataTypes.INTEGER,
@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Order.associate = function(models) {
+  Courier.associate = function(models) {
     // associations can be defined here
   };
   return Order;

@@ -8,20 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      idproduct: {
+      iduser: {
         type: Sequelize.INTEGER
       },
-      iduser: {
+      idorderitem: {
         type: Sequelize.INTEGER
       },
       idcourier: {
         type: Sequelize.INTEGER
-      },
-      idseller: {
-        type: Sequelize.INTEGER
-      },
-      total: {
-        type: Sequelize.BIGINT
       },
       createdAt: {
         allowNull: false,

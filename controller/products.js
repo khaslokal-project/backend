@@ -26,13 +26,9 @@ const productController = {
       idcategory: req.body.idcategory,
       name: req.body.name,
       price: req.body.price,
-      stock: req.body.stock,
       brand: req.body.brand,
       description: req.body.description,
-      type: req.body.type,
-      image: req.body.image,
-      rating: req.body.rating,
-      review: req.body.review
+      image: req.body.image
     })
       .then(newProduct => {
         res.json({
@@ -67,13 +63,9 @@ const productController = {
           idcategory: req.body.idcategory,
           name: req.body.name,
           price: req.body.price,
-          stock: req.body.stock,
           brand: req.body.brand,
           description: req.body.description,
-          type: req.body.type,
           image: req.body.image,
-          rating: req.body.rating,
-          review: req.body.review,
           updatedAt: new Date()
         },
         {
