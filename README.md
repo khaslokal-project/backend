@@ -250,5 +250,5 @@ ALTER TABLE `Sellers` ADD CONSTRAINT `Sellers_fk0` FOREIGN KEY (`idproduct`) REF
 | `/productcategory/`        | GET    | Get all sellers                  |
 | `/productcategory/:id`     | PUT    | update one productcategory by id |
 | `/productcategory/`        | POST   | Create new productcategory       |
-| `/productcategorys/:id`    | DELETE | Delete one sellers by id         |
+| `/productcategorys/:id`    | DELETE | Delete one productCategory by id |
 
