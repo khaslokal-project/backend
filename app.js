@@ -11,7 +11,7 @@ var adminsRouter = require("./routes/admins");
 var productsRouter = require("./routes/products");
 var sellerRouter = require("./routes/seller");
 var productCategory = require("./routes/productcategory");
-var adminCourier = require("./routes/admincourier");
+// var adminCourier = require("./routes/admincourier");
 var courierRouter = require("./routes/couriers");
 // var categoryRouter = require("./routes/categoryquery");
 
@@ -32,11 +32,11 @@ app.use(cors());
 
 app.use(
   cors({
-    origin: [ "*" ],
+    origin: ["*"],
     methods: ["GET", "HEAD", "POST", "DELETE", "PUT", "PATCH", "OPTIONS"],
     credentials: false
   })
-)
+);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -44,7 +44,7 @@ app.use("/admins", adminsRouter);
 app.use("/products", productsRouter);
 app.use("/sellers", sellerRouter);
 app.use("/productcategory", productCategory);
-app.use("/admincourier", adminCourier);
+// app.use("/admincourier", adminCourier);
 app.use("/couriers", courierRouter);
 // app.use("/category", categoryRouter);
 

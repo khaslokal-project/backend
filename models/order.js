@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Courier.associate = function(models) {
+  Order.associate = function(models) {
     // associations can be defined here
   };
   return Order;
