@@ -6,103 +6,103 @@ module.exports = {
     const productCategorySeed = [
     {
         id: 1,
-        nameCategory: 'makanan',
+        name: 'makanan',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 2,
-        nameCategory: 'minuman',
+        name: 'minuman',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 3,
-        nameCategory: 'oleh-oleh',
+        name: 'oleh-oleh',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 4,
-        nameCategory: 'kerajinan',
+        name: 'kerajinan',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 5,
-        nameCategory: 'perizinan',
+        name: 'perizinan',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 6,
-        nameCategory: 'jasa',
+        name: 'jasa',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 7,
-        nameCategory: 'tiket',
+        name: 'tiket',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 8,
-        nameCategory: 'tas',
+        name: 'tas',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 9,
-        nameCategory: 'aksesoris',
+        name: 'aksesoris',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 10,
-        nameCategory: 'buah-buahan',
+        name: 'buah-buahan',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 11,
-        nameCategory: 'pakaian',
+        name: 'pakaian',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 12,
-        nameCategory: 'sepatu',
+        name: 'sepatu',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 13,
-        nameCategory: 'tanaman',
+        name: 'tanaman',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 14,
-        nameCategory: 'sayuran',
+        name: 'sayuran',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 15,
-        nameCategory: 'lauk-pauk',
+        name: 'lauk-pauk',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 16,
-        nameCategory: 'daging',
+        name: 'daging',
         createdAt: new Date(),
         updatedAt: new Date()
     },
     {
         id: 17,
-        nameCategory: 'herbal',
+        name: 'herbal',
         createdAt: new Date(),
         updatedAt: new Date()
     }
