@@ -102,36 +102,37 @@ const adminController = {
             username,
             password,
         } = req.body
+
         if(username && password){
-            Admin.findOne({where:{username}})
+            Admin.findOne({ where: { username }})
             .then(admin=> {
-                const token = jwt.sign({
-                    iat: Math.floor(Date.now() / 1000) - 30,
-                    data: {
-                        id: admin.id,
-                        username:admin.username,
-                        email: admin.email
-                    }
-                }, process.env.JWT_SECRET, {
-                    expiresIn: '1d'
-                })
+
                 bcrypt.compare(password, admin.password)
                 .then(response=> {
                     if(response){
-                        res.status(200).send({
-                            message: 'Thanks for logged in',
-                            token
-                        })
-                    } else {
-                        res.status(400).send({
-                            message: 'log in failed'
-                        })
-                    }
-                })
+                        const token = jwt.sign({
+                            iat: Math.floor(Date.now() / 1000) - 30,
+                            data: {
+                                id: admin.id,   //from mysql
+                                username: admin.username
+                            }
+                        },process.env.JWT_SECRET, {
+                        expiresIn: '1d'
+                    })
+                    res.send({
+                        message: `User is successfully logged in`,
+                        token
+                    })
+                } else {
+                    res.send({
+                        message: `Password is wrong`
+                    })
+                }
             })
-        } else {
-            res.status(400).send({
-                message: 'Check your password'
+        })
+    } else{
+        res.status(400).send({
+            message: `username and password not provided!`
             })
         }
     },

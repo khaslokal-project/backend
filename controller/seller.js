@@ -116,6 +116,30 @@ const sellerController = {
     );
   },
 
+  searchByKeyword: (req, res) => {
+    const value = req.params.username;
+    const Sequelize = require("sequelize");
+    const Op = Sequelize.op;
+    Seller.findAll({
+      where: {
+        username: {
+          [Op.like]: `%${value}%`
+        }
+      }
+    }).then(result => {
+      console.log(result);
+      if (result) {
+        res.status(200).send({
+          result
+        });
+      } else {
+        res.status(404).send({
+          message: "No identified seller"
+        });
+      }
+    });
+  },
+
   // search seller by id && show products
   search: (req, res, next) => {
     const id = Number(req.params.id);
@@ -180,30 +204,6 @@ const sellerController = {
         message: "Check your password"
       });
     }
-  },
-
-  searchByKeyword: (req, res) => {
-    const value = req.params.username;
-    const Sequelize = require("sequelize");
-    const Op = Sequelize.op;
-    Seller.findAll({
-      where: {
-        username: {
-          [Op.like]: `%${value}%`
-        }
-      }
-    }).then(result => {
-      console.log(result);
-      if (result) {
-        res.status(200).send({
-          result
-        });
-      } else {
-        res.status(404).send({
-          message: "No identified seller"
-        });
-      }
-    });
   },
 
   // log out

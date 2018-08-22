@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const sellerController = require("../controller/sellers");
+const sellerController = require("../controller/seller");
 
 // add new seller
 router.post("/register", sellerController.register);

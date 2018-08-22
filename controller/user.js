@@ -167,7 +167,8 @@ const userController = {
         }, process.env.JWT_SECRET, {
           expiresIn: '1d'
         })
-        bcrypt.compare(password, user.password).then(response => {
+        bcrypt.compare(password, user.password)
+        .then(response => {
           if (response) {
             res.status(200).send({
               message: "Logged in",
