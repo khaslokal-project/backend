@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var orderItem = sequelize.define('orderItem', {
-    idproduct: DataTypes.INTEGER,
-    idcourier: DataTypes.INTEGER,
+  const orderItem = sequelize.define('orderItem', {
+    idproduct: DataTypes.BIGINT,
+    idcourier: DataTypes.BIGINT,
     total: DataTypes.BIGINT
   }, {});
   orderItem.associate = function(models) {
