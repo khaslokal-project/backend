@@ -25,8 +25,8 @@ module.exports = {
         password: 'example',
         email: 'indra@example.com',
         phone: '081993732019',
-        createdAt: 2018-08-21T06:53:20.000Z,
-        updatedAt: 2018-08-21T06:53:20.000Z
+        createdAt: new Date(),
+        updatedAt: new Date()
     }
   ]
   return queryInterface.bulkInsert('Sellers', SellerSeed) 
