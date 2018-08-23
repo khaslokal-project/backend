@@ -119,7 +119,7 @@ const sellerController = {
   searchByKeyword: (req, res) => {
     const value = req.params.username;
     const Sequelize = require("sequelize");
-    const Op = Sequelize.op;
+    const Op = Sequelize.Op;
     Seller.findAll({
       where: {
         username: {
@@ -169,17 +169,12 @@ const sellerController = {
   },
 
   login: (req, res) => {
-    const {
-        username,
-        password
-    } = req.body
+    const { username, password } = req.body;
 
     if (username && password) {
-      Seller.findOne({ where: { username } })
-      .then(seller => {
+      Seller.findOne({ where: { username } }).then(seller => {
         if (seller) {
-          bcrypt.compare(password, seller.password)
-          .then(response => {
+          bcrypt.compare(password, seller.password).then(response => {
             if (response) {
               const token = jwt.sign(
                 {

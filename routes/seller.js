@@ -18,9 +18,6 @@ router.post("/login", sellerController.login);
 // search by username
 router.post("/search/:username", sellerController.searchByKeyword);
 
-// search seller product
-router.post("/:");
-
 // edit seller data
 router.put("/:id", sellerController.update);
 
