@@ -146,7 +146,7 @@ const sellerController = {
     Seller.findById(id)
       .then(seller => {
         if (seller) {
-          Seller.findAll({
+          Product.findAll({
             where: {
               idseller: id
             }
