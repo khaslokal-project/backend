@@ -88,9 +88,7 @@ const sellerController = {
           updatedAt: new Date()
         },
         {
-          where: {
-            id: id
-          }
+          where: { id: id }
         }
       ).then(() => {
         res.status(200).send({

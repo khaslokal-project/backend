@@ -9,8 +9,14 @@ router.post("/register", sellerController.register);
 // get all seller
 router.get("/", sellerController.get);
 
+// get all seller
+// router.get("/:id", sellerController.get);
+
+// edit seller data
+router.put("/:id", sellerController.update);
+
 // get data seller by id
-router.get("/:id", sellerController.search);
+router.get("/category/:id", sellerController.search);
 
 // get data seller by id
 router.post("/login", sellerController.login);
@@ -21,8 +27,7 @@ router.post("/search/:username", sellerController.searchByKeyword);
 // search seller product
 router.post("/:");
 
-// edit seller data
-router.put("/:id", sellerController.update);
+
 
 // remove seller
 router.delete("/:id", sellerController.remove);
