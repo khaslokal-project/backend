@@ -4,10 +4,20 @@ const jwt = require("jsonwebtoken");
 const { orderItem } = require("../models");
 
 const orderItemController = {
+  // get all orderItem
+  get:(req, res, next)=> {
+    orderItem.findAll()
+    .then(orderitem=> {
+      res.json(orderitem)
+    })
+    .catch(error=> {
+      res.status(400).send(error)
+    })
+  },
+
   // add cart items
   add: (req, res) => {
-    return orderItem
-      .create({
+    return orderItem.create({
         idproduct: req.body.idproduct,
         idcourier: req.body.idcourier,
         total: req.body.total
@@ -22,9 +32,8 @@ const orderItemController = {
       .catch(error => {
         res.status(400).send(error);
       });
-  },
+  }
+}
 
-  get: (req, res) => {}
-};
 
-module.exports = orderItemController;
+module.exports = orderItemController
