@@ -5,22 +5,6 @@ const { User } = require("../models");
 
 const userController = {
 
-  // auth login
-  validateUser: (req, res, next)=> {
-    jwt.verify(
-      req.header['x-access-token'],
-      process.env.JWT_SECRET,
-      (error, decode)=> {
-        if(error){
-          next(error, 'Token Expired')
-        } else {
-          req.body.UserId = decode.id
-          next()
-        }
-      }
-    )
-  },
-
   // get all User list
   get: (req, res, next) => {
     User.findAll()
