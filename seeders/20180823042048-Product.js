@@ -57,7 +57,6 @@ module.exports = {
         idcategory: 4,
         name: 'kotak tisu',
         price: 50000,
-        stock: 5,
         brand: 'kerajinan Batam',
         description: 'kotak tisu hias gonggong',
         image: 'kotaktissue.jpeg',
