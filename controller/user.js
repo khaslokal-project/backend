@@ -77,7 +77,7 @@ const userController = {
   // update User
   update: (req, res, next) => {
     const id = Number(req.params.id);
-    if (req.body.password && req.body.email) {
+    if (req.body.username) {
       User.update(
         {
           username: req.body.username,
@@ -89,9 +89,7 @@ const userController = {
           updatedAt: new Date()
         },
         {
-          where: {
-            id: id
-          }
+          where: { id: id }
         }
       ).then(() => {
         res.status(200).send({
