@@ -1,5 +1,7 @@
 package-lock.json
 
+.vscode/
+
 node_modules/
 *.mwb.bak
 *.mwb

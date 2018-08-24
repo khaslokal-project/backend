@@ -1,14 +1,15 @@
-const { db } = require('../models')
+const db = require('../models')
+const sequelize = require('sequelize')
+// const seq = require('./../')
 
 const viewOrderController = {
 
     get: (req, res, next) => {
-        return db.sequelize.query("SELECT * FROM `ukmkita.view_order`", {
-                type: db.sequelize.QueryTypes.SELECT 
-            })
-            .then(vieworder => {
-                res.json(vieworder)
-                // We don't need spread here, since only the results will be returned for select queries
+
+        db.sequelize.query("SELECT * FROM ukmkita.view_order;",
+        { type: sequelize.QueryTypes.SELECT})
+            .then(view_order => {
+                res.json(view_order)
             })
     }
 }
