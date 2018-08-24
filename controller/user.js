@@ -16,6 +16,16 @@ const userController = {
       });
   },
 
+  getloggin: (req, res, next) => {
+    User.findOne()
+      .then(user => {
+        res.status(200).send(user);
+      })
+      .catch(error => {
+        res.status(500).send(error);
+      });
+  },
+
   // register new user
   register: (req, res, next) => {
     const {

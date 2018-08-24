@@ -9,7 +9,12 @@ const authController = require('../auth/controller')
 router.get('/', userController.get);
 
 // check token
-router.get('/checktoken', authController.checkToken, userController.get)
+// router.get('/checktoken', (req, res,next)=> {
+//     res.send(authController.checkToken)
+//     res.send(userController.get)
+// })
+
+router.get('/checktoken', authController.checkToken, userController.getloggin)
 
 // add new user
 router.post('/register', userController.register);
