@@ -91,8 +91,8 @@ CREATE TABLE `orderItems` (
   PRIMARY KEY (`id`),
   KEY `orderfk_0_idx` (`idorder`),
   KEY `orderfk_1_idx` (`idproduct`),
-  CONSTRAINT `orderfk_0` FOREIGN KEY (`idorder`) REFERENCES `orders` (`id`),
-  CONSTRAINT `orderfk_1` FOREIGN KEY (`idproduct`) REFERENCES `products` (`id`)
+  CONSTRAINT `orderfk_0` FOREIGN KEY (`idorder`) REFERENCES `Orders` (`id`),
+  CONSTRAINT `orderfk_1` FOREIGN KEY (`idproduct`) REFERENCES `Products` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -123,8 +123,8 @@ CREATE TABLE `Orders` (
   PRIMARY KEY (`id`),
   KEY `Orders_fk2_idx` (`idcourier`),
   KEY `Orders_fk0_idx` (`iduser`),
-  CONSTRAINT `Orders_fk0` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`),
-  CONSTRAINT `Orders_fk2` FOREIGN KEY (`idcourier`) REFERENCES `couriers` (`id`)
+  CONSTRAINT `Orders_fk0` FOREIGN KEY (`iduser`) REFERENCES `Users` (`id`),
+  CONSTRAINT `Orders_fk2` FOREIGN KEY (`idcourier`) REFERENCES `Couriers` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -185,8 +185,8 @@ CREATE TABLE `Products` (
   PRIMARY KEY (`id`),
   KEY `Products_fk0` (`idcategory`),
   KEY `Products_fk1_idx` (`idseller`),
-  CONSTRAINT `Products_fk0` FOREIGN KEY (`idcategory`) REFERENCES `productcategories` (`id`),
-  CONSTRAINT `Products_fk1` FOREIGN KEY (`idseller`) REFERENCES `sellers` (`id`)
+  CONSTRAINT `Products_fk0` FOREIGN KEY (`idcategory`) REFERENCES `productCategories` (`id`),
+  CONSTRAINT `Products_fk1` FOREIGN KEY (`idseller`) REFERENCES `Sellers` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -335,7 +335,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`indr`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `view_order` AS select `a`.`id` AS `idorder`,`d`.`id` AS `iduser`,`e`.`id` AS `idcourier`,`e`.`username` AS `namecourier`,`d`.`username` AS `nameuser`,`a`.`status` AS `status`,`a`.`createdAt` AS `dateorder`,sum((`c`.`price` * `b`.`qty`)) AS `total` from ((((`orders` `a` left join `orderitems` `b` on((`a`.`id` = `b`.`idorder`))) left join `products` `c` on((`c`.`id` = `b`.`idproduct`))) left join `users` `d` on((`d`.`id` = `a`.`iduser`))) left join `couriers` `e` on((`e`.`id` = `a`.`idcourier`))) group by `a`.`id`,`d`.`username` */;
+/*!50001 VIEW `view_order` AS select `a`.`id` AS `idorder`,`d`.`id` AS `iduser`,`e`.`id` AS `idcourier`,`e`.`username` AS `namecourier`,`d`.`username` AS `nameuser`,`a`.`status` AS `status`,`a`.`createdAt` AS `dateorder`,sum((`c`.`price` * `b`.`qty`)) AS `total` from ((((`orders` `a` left join `orderitems` `b` on((`a`.`id` = `b`.`idorder`))) left join `products` `c` on((`c`.`id` = `b`.`idproduct`))) left join `Users` `d` on((`d`.`id` = `a`.`iduser`))) left join `Couriers` `e` on((`e`.`id` = `a`.`idcourier`))) group by `a`.`id`,`d`.`username` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
