@@ -4,8 +4,24 @@ const jwt = require("jsonwebtoken");
 const { Admin } = require("../models");
 
 const adminController = {
+
+  validateUser: (req, res, next) => {
+    jwt.verify(
+      req.header("x-access-token"),
+      process.env.JWT_SECRET,
+      (error, decode) => {
+        if (error) {
+          next(error, "Token Expired!");
+        } else {
+          req.body.AdminId = decode.id;
+          next();
+        }
+      })
+  },
+
   // get all Admin list
   get: (req, res, next) => {
+    console.log(req.decoded.data.id)
     Admin.findAll()
       .then(admin => {
         res.status(200).send(admin);
@@ -17,7 +33,13 @@ const adminController = {
 
   // register new admin
   register: (req, res, next) => {
-    const { username, firstname, lastname, password, email } = req.body;
+    const {
+      username,
+      firstname,
+      lastname,
+      password,
+      email
+    } = req.body;
     if (username && password && email) {
       const saltRounds = 5;
       bcrypt
@@ -63,18 +85,17 @@ const adminController = {
   update: (req, res, next) => {
     const id = Number(req.params.id);
     if (req.body.password && req.body.email) {
-      Admin.update(
-        {
-          username: req.body.username,
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
-          email: req.body.email,
-          updatedAt: new Date()
-        },
-        {
-          where: { id: id }
+      Admin.update({
+        username: req.body.username,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        updatedAt: new Date()
+      }, {
+        where: {
+          id: id
         }
-      ).then(() => {
+      }).then(() => {
         res.status(200).send({
           message: "Admin updated"
         });
@@ -90,7 +111,9 @@ const adminController = {
   remove: (req, res, next) => {
     const id = Number(req.params.id);
     Admin.destroy({
-      where: { id: id }
+      where: {
+        id: id
+      }
     }).then(
       res.status(200).send({
         message: "Admin removed"
@@ -100,47 +123,49 @@ const adminController = {
 
   login: (req, res) => {
     const {
-        username,
-        password
+      username,
+      password
     } = req.body
 
     if (username && password) {
-      Admin.findOne({ where: { username } })
-      .then(admin => {
-        if (admin) {
-          bcrypt.compare(password, admin.password)
-          .then(response => {
-            if (response) {
-              const token = jwt.sign(
-                {
-                  iat: Math.floor(Date.now() / 1000) - 30,
-                  data: {
-                    id: admin.id,
-                    username: admin.username,
-                    email: admin.email
-                  }
-                },
-                process.env.JWT_SECRET,
-                {
-                  expiresIn: "1d"
+      Admin.findOne({
+          where: {
+            username
+          }
+        })
+        .then(admin => {
+          if (admin) {
+            bcrypt.compare(password, admin.password)
+              .then(response => {
+                if (response) {
+                  const token = jwt.sign({
+                      iat: Math.floor(Date.now() / 1000) - 30,
+                      data: {
+                        id: admin.id,
+                        username: admin.username,
+                        email: admin.email
+                      }
+                    },
+                    process.env.JWT_SECRET, {
+                      expiresIn: "1d"
+                    }
+                  );
+                  res.status(200).send({
+                    message: "Thanks for logged in",
+                    token
+                  });
+                } else {
+                  res.status(400).send({
+                    message: "log in failed"
+                  });
                 }
-              );
-              res.status(200).send({
-                message: "Thanks for logged in",
-                token
               });
-            } else {
-              res.status(400).send({
-                message: "log in failed"
-              });
-            }
-          });
-        } else {
-          res.status(400).send({
-            message: "Check your login username"
-          });
-        }
-      });
+          } else {
+            res.status(400).send({
+              message: "Check your login username"
+            });
+          }
+        });
     } else {
       res.status(400).send({
         message: "Check your login credentials!"
@@ -148,9 +173,30 @@ const adminController = {
     }
   },
 
+  // check logged in (method get)
+  isLoggedIn: (req, res, next) => {
+    const header = req.header('x-access-token')
+    console.log(header);
+    
+
+    jwt.verify(
+      req.header('x-access-token'),
+      process.env.JWT_SECRET,
+      (error, decode) => {
+        if (error) {
+          res.send(false)
+        } else {
+          req.body.id = decode.id
+          res.send(true)
+        }
+      })
+  },
+
   // log out
   logout: (req, res, next) => {
-    res.status(200).send({ message: "see ya" });
+    res.status(200).send({
+      message: "see ya"
+    });
   }
 };
 

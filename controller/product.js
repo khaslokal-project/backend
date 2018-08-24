@@ -15,8 +15,7 @@ const productController = {
           req.body.AdminId = decode.id;
           next();
         }
-      }
-    );
+      })
   },
 
   // add product after Admin validated

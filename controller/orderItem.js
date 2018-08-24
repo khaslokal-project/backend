@@ -1,16 +1,49 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const { orderItem } = require("../models");
+const { orderItem,
+  Products,
+  Courier
+} = require("../models");
 
 const orderItemController = {
+  
+
+
+  // get data
+  getdetail: (req, res, next) => {
+    const idproduct = req.params.idproduct;
+    orderItem.findAll({
+      
+      where: { idproduct: idproduct }
+    }).then(result => {
+      if (result) {
+        res.status(200).send(result);
+      } else {
+        res.status(404).send({
+          message: "No data"
+        });
+      }
+    });
+  },
+  
+  // get all orderItem
+  get:(req, res, next)=> {
+    orderItem.findAll()
+    .then(orderitem=> {
+      res.json(orderitem)
+    })
+    .catch(error=> {
+      res.status(400).send(error)
+    })
+  },
+
   // add cart items
   add: (req, res) => {
-    return orderItem
-      .create({
+    return orderItem.create({
         idproduct: req.body.idproduct,
-        idcourier: req.body.idcourier,
-        total: req.body.total
+        idorder: req.body.idorder,
+        qty: req.body.total
       })
       .then(newOrderItem => {
         res.json({
@@ -23,8 +56,13 @@ const orderItemController = {
         res.status(400).send(error);
       });
   }
+<<<<<<< HEAD
 
   // get: (req, res) => {}
 };
+=======
+}
 
-module.exports = orderItemController;
+>>>>>>> cfbee034a65655a8cbc5ce64560c59760c24bc62
+
+module.exports = orderItemController
