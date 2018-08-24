@@ -18,52 +18,54 @@ const orderController = {
     return Order.create({
       iduser: req.body.iduser,
       idcourier: req.body.idcourier,
-      status: req.body.status
+      status: '0'
     })
     .then(newOrder=> {
+      const { items } = req.body;
+      items.forEach(item => item.idorder = newOrder.id)
 
-
-
-      
-      orderItem.bulkCreate([
-        {
-          idproduct:123
-        },{
-
-        }
-      ])
-      
-      orderItem.create({
-        idproduct: 1,
-        qty: 1,
-        idOrder: 1
-      })
-
-      res.json({
-        status: "sucess",
-        message: "new order created",
-        data: newOrder
-      })
+      orderItem.bulkCreate(items)
+      res.json(newOrder)
     })
     .catch(error=> {
       res.status(400).send(error)
     })
   },
 
-  orderItem: (req, res) => {
-    const idcategory = req.params.iduser;
-    Order.findAll({
-      where: { idproduct: idproduct }
-    }).then(result => {
-      if (result) {
-        res.status(200).send(result);
-      } else {
-        res.status(404).send({
-          message: "No data"
-        });
-      }
-    });
+  updatestatus: (req, res, next)=> {
+    const id = Number(req.params.id)
+    if(req.body.iduser){
+      Order.update({
+        status: req.body.status
+      }, {
+        where: { id: id }
+      }).then(()=> {
+        res.status(200).send({
+          message: `Status updated`
+        })
+      })
+    } else {
+      res.status(416).send({
+        message: `check your order`
+      })
+    }
   }
+
+
+  // orderItem: (req, res) => {
+  //   const idcategory = req.params.iduser;
+  //   Order.findAll({
+  //     where: { idproduct: idproduct }
+  //   }).then(result => {
+  //     if (result) {
+  //       res.status(200).send(result);
+  //     } else {
+  //       res.status(404).send({
+  //         message: "No data"
+  //       });
+  //     }
+  //   });
+  // }
 }
 
 module.exports = orderController;
