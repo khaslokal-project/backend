@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const { User } = require("../models");
+const { user } = require("../models");
 
 const userController = {
 
   // get all User list
   get: (req, res, next) => {
-    User.findAll()
+    user.findAll()
       .then(user => {
         res.status(200).send(user);
       })
@@ -16,8 +16,8 @@ const userController = {
       });
   },
 
-  getloggin: (req, res, next) => {
-    User.findOne()
+  getloggedin: (req, res, next) => {
+    user.findOne()
       .then(user => {
         res.status(200).send(user);
       })
@@ -54,7 +54,7 @@ const userController = {
           };
         })
         .then(newUser => {
-          User.build(newUser)
+          user.build(newUser)
             .save()
             .then(user => {
               res.status(200).send({
@@ -88,7 +88,7 @@ const userController = {
   update: (req, res, next) => {
     const id = Number(req.params.id);
     if (req.body.username) {
-      User.update(
+      user.update(
         {
           username: req.body.username,
           firstname: req.body.firstname,
@@ -116,7 +116,7 @@ const userController = {
   // remove User
   remove: (req, res, next) => {
     const id = Number(req.params.id);
-    User.destroy({
+    user.destroy({
       where: { id: id }
     }).then(
       res.status(200).send({
@@ -128,7 +128,7 @@ const userController = {
   // search user by id
   search: (req, res, next) => {
     const id = Number(req.params.id);
-    User.findbyId(id)
+    user.findbyId(id)
       .then(user => {
         if (user) {
           res.search(user);
@@ -148,7 +148,7 @@ const userController = {
     } = req.body
 
     if (username && password) {
-      User.findOne({ where: { username } })
+      user.findOne({ where: { username } })
       .then(user => {
         if(user){
           bcrypt.compare(password, user.password)

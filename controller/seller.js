@@ -1,12 +1,12 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const { Seller, Product } = require("../models");
+const { seller, product } = require("../models");
 
 const sellerController = {
   // get all Seller list
   get: (req, res, next) => {
-    Seller.findAll()
+    seller.findAll()
       .then(seller => {
         res.status(200).send(seller);
       })
@@ -43,7 +43,7 @@ const sellerController = {
           };
         })
         .then(newSeller => {
-          Seller.build(newSeller)
+          seller.build(newSeller)
             .save()
             .then(seller => {
               res.status(200).send({
@@ -77,7 +77,7 @@ const sellerController = {
   update: (req, res, next) => {
     const id = Number(req.params.id);
     if (req.body.password && req.body.email) {
-      Seller.update(
+      seller.update(
         {
           username: req.body.username,
           firstname: req.body.firstname,
@@ -105,7 +105,7 @@ const sellerController = {
   // remove Seller
   remove: (req, res, next) => {
     const id = Number(req.params.id);
-    Seller.destroy({
+    seller.destroy({
       where: { id: id }
     }).then(
       res.status(200).send({
@@ -118,7 +118,7 @@ const sellerController = {
     const value = req.params.username;
     const Sequelize = require("sequelize");
     const Op = Sequelize.Op;
-    Seller.findAll({
+    seller.findAll({
       where: {
         username: {
           [Op.like]: `%${value}%`
@@ -141,10 +141,10 @@ const sellerController = {
   // search seller by id && show products
   search: (req, res, next) => {
     const id = Number(req.params.id);
-    Seller.findById(id)
+    seller.findById(id)
       .then(seller => {
         if (seller) {
-          Product.findAll({
+          product.findAll({
             where: {
               idseller: id
             }
@@ -170,7 +170,7 @@ const sellerController = {
     const { username, password } = req.body;
 
     if (username && password) {
-      Seller.findOne({ where: { username } }).then(seller => {
+      seller.findOne({ where: { username } }).then(seller => {
         if (seller) {
           bcrypt.compare(password, seller.password).then(response => {
             if (response) {

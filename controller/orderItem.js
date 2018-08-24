@@ -1,9 +1,9 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const { orderItem,
-  Products,
-  Courier
+const { orderitem,
+  product,
+  courier
 } = require("../models");
 
 const orderItemController = {
@@ -13,7 +13,7 @@ const orderItemController = {
   // get data
   getdetail: (req, res, next) => {
     const idproduct = req.params.idproduct;
-    orderItem.findAll({
+    orderitem.findAll({
       
       where: { idproduct: idproduct }
     }).then(result => {
@@ -29,7 +29,7 @@ const orderItemController = {
   
   // get all orderItem
   get:(req, res, next)=> {
-    orderItem.findAll()
+    orderitem.findAll()
     .then(orderitem=> {
       res.json(orderitem)
     })
@@ -40,7 +40,7 @@ const orderItemController = {
 
   // add cart items
   add: (req, res) => {
-    return orderItem.create({
+    return orderitem.create({
         idproduct: req.body.idproduct,
         idorder: req.body.idorder,
         qty: req.body.total

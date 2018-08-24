@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const { Product } = require("../models");
+const { product } = require("../models");
 
 const productController = {
   // validate user with token before update product
@@ -12,7 +12,7 @@ const productController = {
         if (error) {
           next(error, "Token Expired!");
         } else {
-          req.body.AdminId = decode.id;
+          req.body.adminId = decode.id;
           next();
         }
       })
@@ -20,7 +20,7 @@ const productController = {
 
   // add product after Admin validated
   add: (req, res) => {
-    return Product.create({
+    return product.create({
       idseller: req.body.idseller,
       idcategory: req.body.idcategory,
       name: req.body.name,
@@ -43,7 +43,7 @@ const productController = {
 
   // get all product data
   get: (req, res, next) => {
-    Product.findAll()
+    product.findAll()
       .then(product => {
         res.json(product);
       })
@@ -56,7 +56,7 @@ const productController = {
   update: (req, res, next) => {
     const id = Number(req.params.id);
     if (req.body.name) {
-      Product.update(
+      product.update(
         {
           idseller: req.body.idseller,
           idcategory: req.body.idcategory,
@@ -85,7 +85,7 @@ const productController = {
   // get data by id
   search: (req, res, next) => {
     const id = Number(req.params.id);
-    Product.findById(id)
+    product.findById(id)
       .then(product => {
         if (product) {
           res.send(product);
@@ -103,7 +103,7 @@ const productController = {
     const value = req.params.name;
     const Sequelize = require("sequelize");
     const Op = Sequelize.Op;
-    Product.findAll({
+    product.findAll({
       where: {
         name: {
           [Op.like]: `%${value}%`
@@ -126,7 +126,7 @@ const productController = {
   // remove product
   remove: (req, res, next) => {
     const id = Number(req.params.id);
-    Product.destroy({
+    product.destroy({
       where: { id: id }
     })
       .then(
@@ -143,7 +143,7 @@ const productController = {
 
   searchByCategory: (req, res) => {
     const idcategory = req.params.idcategory;
-    Product.findAll({
+    product.findAll({
       where: {
         idcategory: idcategory
       }

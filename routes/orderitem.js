@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const orderItemController = require("../controller/orderItem");
+const orderItemController = require("../controller/orderitem");
 
 
 // get all orderItem

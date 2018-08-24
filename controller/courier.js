@@ -1,13 +1,13 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const { Courier } = require("../models");
+const { courier } = require("../models");
 
 const courierController = {
 
   // get all courier
   get: (req, res, next)=> {
-    Courier.findAll().then(courier=> {
+    courier.findAll().then(courier=> {
       res.status(200).send(courier)
     })
     .catch(error=> {
@@ -37,7 +37,7 @@ const courierController = {
           }
         })
         .then(newCourier => {
-          Courier.build(newCourier)
+          courier.build(newCourier)
             .save()
             .then(courier => {
               res.status(200).send({
@@ -68,7 +68,7 @@ const courierController = {
   update: (req, res, next) => {
     const id = Number(req.params.id);
     if (req.body.username && req.body.password) {
-      Courier.update(
+      courier.update(
         {
           username: req.body.username,
           price: req.body.price,
@@ -95,7 +95,7 @@ const courierController = {
   // remove courier
   remove: (req, res, next) => {
     const id = Number(req.params.id);
-    Courier.destroy({
+    courier.destroy({
       where: { id: id }
     }).then(
       res.status(200).send({
@@ -112,7 +112,7 @@ const courierController = {
     } = req.body
 
     if (username && password) {
-      Courier.findOne({ where: { username } })
+      courier.findOne({ where: { username } })
       .then(courier => {
         if (courier) {
           bcrypt.compare(password, courier.password)

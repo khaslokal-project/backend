@@ -1,9 +1,9 @@
-const { productCategory } = require("../models");
+const { productcategory } = require("../models");
 
 const productCategoryController = {
   // get all category list
   get: (req, res, next) => {
-    productCategory
+    productcategory
       .findAll()
       .then(category => {
         res.send(category);
@@ -16,7 +16,7 @@ const productCategoryController = {
   //   get one data by id
   getOneById: (req, res, next) => {
     const id = Number(req.params.id);
-    productCategory
+    productcategory
       .findById(id)
       .then(category => {
         if (category) {
@@ -36,7 +36,7 @@ const productCategoryController = {
 
   // add new category data
   create: (req, res, next) => {
-    productCategory
+    productcategory
       .create(req.body)
       .then(category => {
         res.send(category);
@@ -50,7 +50,7 @@ const productCategoryController = {
   update: (req, res, next) => {
     const id = Number(req.params.id);
     if (req.body.name) {
-      productCategory
+      productcategory
         .update(
           {
             name: req.body.name,
@@ -75,7 +75,7 @@ const productCategoryController = {
   // remove category
   remove: (req, res, next) => {
     const id = Number(req.params.id);
-    productCategory
+    productcategory
       .destroy({
         where: { id: id }
       })

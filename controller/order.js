@@ -1,11 +1,11 @@
 // on progress
-const { Order, orderItem } = require('../models')
+const { order, orderitem } = require('../models')
 
 const orderController = {
 
   // get all orderItem
   get:(req, res, next)=> {
-    Order.findAll()
+    order.findAll()
     .then(order=> {
       res.json(order)
     })
@@ -15,7 +15,7 @@ const orderController = {
   },
 
   add:(req, res)=> {
-    return Order.create({
+    return order.create({
       iduser: req.body.iduser,
       idcourier: req.body.idcourier,
       status: '0'
@@ -24,7 +24,7 @@ const orderController = {
       const { items } = req.body;
       items.forEach(item => item.idorder = newOrder.id)
 
-      orderItem.bulkCreate(items)
+      orderitem.bulkCreate(items)
       res.json(newOrder)
     })
     .catch(error=> {
@@ -35,7 +35,7 @@ const orderController = {
   updatestatus: (req, res, next)=> {
     const id = Number(req.params.id)
     if(req.body.iduser){
-      Order.update({
+      order.update({
         status: req.body.status
       }, {
         where: { id: id }

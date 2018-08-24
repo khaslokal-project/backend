@@ -107,11 +107,11 @@ module.exports = {
         updatedAt: new Date()
     }
   ]
-  return queryInterface.bulkInsert('productCategories', productCategorySeed)
+  return queryInterface.bulkInsert('productcategories', productCategorySeed)
   },
 
   down: (queryInterface, Sequelize) => {
     
-    return queryInterface.bulkDelete('productCategories', null, {});
+    return queryInterface.bulkDelete('productcategories', null, {});
   }
 };

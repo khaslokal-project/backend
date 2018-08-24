@@ -1,14 +1,25 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const { Admin } = require("../models");
+const { admin } = require("../models");
 
 const adminController = {
 
   // get all Admin list
   get: (req, res, next) => {
     // console.log(req.decoded.data.id)
-    Admin.findAll()
+    admin.findAll()
+      .then(admin => {
+        res.status(200).send(admin);
+      })
+      .catch(error => {
+        res.status(500).send(error);
+      });
+  },
+
+  getlogedin: (req, res, next) => {
+    // console.log(req.decoded.data.id)
+    admin.findOne()
       .then(admin => {
         res.status(200).send(admin);
       })
@@ -41,7 +52,7 @@ const adminController = {
           };
         })
         .then(newAdmin => {
-          Admin.build(newAdmin)
+          admin.build(newAdmin)
             .save()
             .then(admin => {
               res.status(200).send({
@@ -71,7 +82,7 @@ const adminController = {
   update: (req, res, next) => {
     const id = Number(req.params.id);
     if (req.body.password && req.body.email) {
-      Admin.update({
+      admin.update({
         username: req.body.username,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
@@ -96,7 +107,7 @@ const adminController = {
   // remove Admin
   remove: (req, res, next) => {
     const id = Number(req.params.id);
-    Admin.destroy({
+    admin.destroy({
       where: {
         id: id
       }
@@ -114,7 +125,7 @@ const adminController = {
     } = req.body
 
     if (username && password) {
-      Admin.findOne({
+      admin.findOne({
           where: {
             username
           }
