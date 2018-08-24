@@ -5,7 +5,7 @@ const adminController = require('../controller/admin')
 const authController = require('../auth/controller')
 
 // admin routes view
-router.get('/', adminController.get)
+router.get('/', authController.checkToken, adminController.get)
 
 router.post('/register', adminController.register)
 
@@ -14,10 +14,10 @@ router.post('/login', adminController.login)
 router.get('/checktoken', authController.checkToken, authController.get)
 // router.get('/check', adminController.isLoggedIn)
 
-router.put('/:id', adminController.update)
+router.put('/:id', authController.checkToken, adminController.update)
 
-router.delete('/:id', adminController.remove)
+router.delete('/:id', authController.checkToken, adminController.remove)
 
-router.post('/logout', adminController.logout)
+router.post('/logout', authController.checkToken, adminController.logout)
 
 module.exports = router;

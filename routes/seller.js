@@ -2,21 +2,23 @@ var express = require("express");
 var router = express.Router();
 
 const sellerController = require("../controller/seller");
+const authController = require('../auth/controller')
 
-// add new seller
-router.post("/register", sellerController.register);
 
 // get all seller
 router.get("/", sellerController.get);
 
-// edit seller data
-router.put("/:id", sellerController.update);
-
 // get data seller by id
 router.get("/category/:id", sellerController.search);
 
+// add new seller
+router.post("/register", authController.checkToken, sellerController.register);
+
+// edit seller data
+router.put("/:id", authController.checkToken, sellerController.update);
+
 // get data seller by id
-router.post("/login", sellerController.login);
+router.post("/login", authController.checkToken, sellerController.login);
 
 // search by username
 router.post("/search/:username", sellerController.searchByKeyword);

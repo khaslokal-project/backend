@@ -2,9 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 const courierController = require('../controller/courier');
+const authController = require('../auth/controller')
 
 // get all courier
-router.get('/', courierController.get)
+router.get('/', authController.checkToken, courierController.get)
 
 // add new courier
 router.post('/', courierController.add);

@@ -132,7 +132,7 @@ const sellerController = {
         });
       } else {
         res.status(404).send({
-          message: "No identified seller"
+          message: "Seller not found"
         });
       }
     });

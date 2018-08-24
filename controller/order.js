@@ -50,22 +50,6 @@ const orderController = {
       })
     }
   }
-
-
-  // orderItem: (req, res) => {
-  //   const idcategory = req.params.iduser;
-  //   Order.findAll({
-  //     where: { idproduct: idproduct }
-  //   }).then(result => {
-  //     if (result) {
-  //       res.status(200).send(result);
-  //     } else {
-  //       res.status(404).send({
-  //         message: "No data"
-  //       });
-  //     }
-  //   });
-  // }
 }
 
 module.exports = orderController;
