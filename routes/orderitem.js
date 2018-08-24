@@ -7,6 +7,8 @@ const orderItemController = require("../controller/orderItem");
 // get all orderItem
 router.get("/", orderItemController.get);
 
+router.get("/detail/:id", orderItemController.getdetail);
+
 // searh products by id
 router.post("/", orderItemController.add);
 

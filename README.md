@@ -252,3 +252,37 @@ ALTER TABLE `Sellers` ADD CONSTRAINT `Sellers_fk0` FOREIGN KEY (`idproduct`) REF
 | `/productcategory/`        | POST   | Create new productcategory       |
 | `/productcategorys/:id`    | DELETE | Delete one productCategory by id |
 
+```
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `indr`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `view_order` AS
+    SELECT 
+        `a`.`id` AS `idOrder`,
+        `d`.`username` AS `username`,
+        SUM((`c`.`price` * `b`.`qty`)) AS `total`
+    FROM
+        (((`orders` `a`
+        LEFT JOIN `orderitems` `b` ON ((`a`.`id` = `b`.`idorder`)))
+        LEFT JOIN `products` `c` ON ((`c`.`id` = `b`.`idproduct`)))
+        LEFT JOIN `users` `d` ON ((`d`.`id` = `a`.`iduser`)))
+    GROUP BY `a`.`id` , `d`.`username`
+```
+
+```
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `indr`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `view_orderitem` AS
+    SELECT 
+        `b`.`idorder` AS `idorder`,
+        `c`.`name` AS `name`,
+        `c`.`price` AS `price`,
+        `b`.`qty` AS `qty`,
+        (`c`.`price` * `b`.`qty`) AS `total`
+    FROM
+        (`orderitems` `b`
+        LEFT JOIN `products` `c` ON ((`c`.`id` = `b`.`idproduct`)))
+```

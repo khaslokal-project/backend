@@ -8,9 +8,9 @@ router.get("/", productController.get);
 // searh products by id
 router.get("/:id", productController.search);
 
-router.post("/", productController.add);
+router.post("/", productController.validateUser, productController.add);
 
-router.put("/:id", productController.update);
+router.put("/:id", productController.validateUser, productController.update);
 
 router.delete("/:id", productController.remove);
 
