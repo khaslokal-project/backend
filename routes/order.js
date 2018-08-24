@@ -13,7 +13,7 @@ router.post('/', orderController.add);
 // edit single data, identified by id
 router.put('/updatestatus/:id', orderController.updatestatus);
 
-router.get('/vieworder', viewOrderController.get);
+// router.get('/vieworder', viewOrderController.get);
 
 // router.post('/login', courierController.login);
 
