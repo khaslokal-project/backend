@@ -25,6 +25,9 @@ router.get('/:id', userController.search);
 //get data user by id
 router.post('/login', userController.login);
 
+//log out account
+router.post('/logout', userController.logout);
+
 // edit user data
 router.put('/:id', userController.update);
 
