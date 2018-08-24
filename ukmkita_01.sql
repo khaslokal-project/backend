@@ -123,8 +123,8 @@ CREATE TABLE `Orders` (
   PRIMARY KEY (`id`),
   KEY `Orders_fk2_idx` (`idcourier`),
   KEY `Orders_fk0_idx` (`iduser`),
-  CONSTRAINT `Orders_fk0` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`),
-  CONSTRAINT `Orders_fk2` FOREIGN KEY (`idcourier`) REFERENCES `couriers` (`id`)
+  CONSTRAINT `Orders_fk0` FOREIGN KEY (`iduser`) REFERENCES `Users` (`id`),
+  CONSTRAINT `Orders_fk2` FOREIGN KEY (`idcourier`) REFERENCES `Couriers` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -185,8 +185,8 @@ CREATE TABLE `Products` (
   PRIMARY KEY (`id`),
   KEY `Products_fk0` (`idcategory`),
   KEY `Products_fk1_idx` (`idseller`),
-  CONSTRAINT `Products_fk0` FOREIGN KEY (`idcategory`) REFERENCES `productcategories` (`id`),
-  CONSTRAINT `Products_fk1` FOREIGN KEY (`idseller`) REFERENCES `sellers` (`id`)
+  CONSTRAINT `Products_fk0` FOREIGN KEY (`idcategory`) REFERENCES `productCategories` (`id`),
+  CONSTRAINT `Products_fk1` FOREIGN KEY (`idseller`) REFERENCES `Sellers` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
