@@ -159,7 +159,14 @@ const userController = {
                 }
               );
               res.status(200).send({
-                message: "Thanks for logged in",
+                // message: "Thanks for logged in",
+                id: user.id,
+                username: user.username,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                address: user.address,
+                email: user.email,
+                phone: user.phone,
                 token
               });
             } else {
