@@ -11,7 +11,7 @@ router.post('/register', adminController.register)
 
 router.post('/login', adminController.login)
 
-router.get('/checktoken', authController.checkToken, adminController.get)
+router.get('/checktoken', authController.checkToken, authController.get)
 // router.get('/check', adminController.isLoggedIn)
 
 router.put('/:id', adminController.update)

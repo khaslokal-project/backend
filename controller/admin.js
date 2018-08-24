@@ -5,23 +5,9 @@ const { Admin } = require("../models");
 
 const adminController = {
 
-  validateUser: (req, res, next) => {
-    jwt.verify(
-      req.header("x-access-token"),
-      process.env.JWT_SECRET,
-      (error, decode) => {
-        if (error) {
-          next(error, "Token Expired!");
-        } else {
-          req.body.AdminId = decode.id;
-          next();
-        }
-      })
-  },
-
   // get all Admin list
   get: (req, res, next) => {
-    console.log(req.decoded.data.id)
+    // console.log(req.decoded.data.id)
     Admin.findAll()
       .then(admin => {
         res.status(200).send(admin);
@@ -171,25 +157,6 @@ const adminController = {
         message: "Check your login credentials!"
       });
     }
-  },
-
-  // check logged in (method get)
-  isLoggedIn: (req, res, next) => {
-    const header = req.header('x-access-token')
-    console.log(header);
-    
-
-    jwt.verify(
-      req.header('x-access-token'),
-      process.env.JWT_SECRET,
-      (error, decode) => {
-        if (error) {
-          res.send(false)
-        } else {
-          req.body.id = decode.id
-          res.send(true)
-        }
-      })
   },
 
   // log out

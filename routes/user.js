@@ -2,12 +2,17 @@ var express = require('express');
 var router = express.Router();
 
 const userController = require('../controller/user');
+const authController = require('../auth/controller')
 
-// add new user
-router.post('/register', userController.register);
 
 // get all user
 router.get('/', userController.get);
+
+// check token
+router.get('/checktoken', authController.checkToken, authController.get)
+
+// add new user
+router.post('/register', userController.register);
 
 // get all data user by id
 router.get('/:id', userController.search);
