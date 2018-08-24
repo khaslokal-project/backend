@@ -22,9 +22,9 @@ const orderItemController = {
       .catch(error => {
         res.status(400).send(error);
       });
-  },
+  }
 
-  get: (req, res) => {}
+  // get: (req, res) => {}
 };
 
 module.exports = orderItemController;
