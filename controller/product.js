@@ -3,20 +3,7 @@ const jwt = require("jsonwebtoken");
 const { product } = require("../models");
 
 const productController = {
-  // validate user with token before update product
-  validateUser: (req, res, next) => {
-    jwt.verify(
-      req.headers["x-access-token"],
-      process.env.JWT_SECRET,
-      (error, decode) => {
-        if (error) {
-          next(error, "Token Expired!");
-        } else {
-          req.body.adminId = decode.id;
-          next();
-        }
-      })
-  },
+
 
   // add product after Admin validated
   add: (req, res) => {
@@ -82,8 +69,26 @@ const productController = {
     }
   },
 
+  // remove product
+  remove: (req, res, next) => {
+    const id = Number(req.params.id);
+    product.destroy({
+      where: { id: id }
+    })
+      .then(
+        res.status(200).send({
+          message: "Product removed"
+        })
+      )
+      .catch(error => {
+        res.status(500).send({
+          message: error
+        });
+      });
+  },
+
   // get data by id
-  search: (req, res, next) => {
+  getbyid: (req, res, next) => {
     const id = Number(req.params.id);
     product.findById(id)
       .then(product => {
@@ -123,24 +128,7 @@ const productController = {
     });
   },
 
-  // remove product
-  remove: (req, res, next) => {
-    const id = Number(req.params.id);
-    product.destroy({
-      where: { id: id }
-    })
-      .then(
-        res.status(200).send({
-          message: "Product removed"
-        })
-      )
-      .catch(error => {
-        res.status(500).send({
-          message: error
-        });
-      });
-  },
-
+  // sort by category
   searchByCategory: (req, res) => {
     const idcategory = req.params.idcategory;
     product.findAll({

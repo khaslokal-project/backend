@@ -16,6 +16,8 @@ router.put('/updatestatus/:id', orderController.updatestatus);
 
 router.get('/vieworder', viewOrderController.get);
 
+router.get('/vieworderitem/:id', viewOrderController.getbyid);
+
 router.get('/vieworderitem', viewOrderItemController.get)
 
 // router.post('/login', courierController.login);
