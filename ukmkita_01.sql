@@ -91,8 +91,8 @@ CREATE TABLE `orderItems` (
   PRIMARY KEY (`id`),
   KEY `orderfk_0_idx` (`idorder`),
   KEY `orderfk_1_idx` (`idproduct`),
-  CONSTRAINT `orderfk_0` FOREIGN KEY (`idorder`) REFERENCES `orders` (`id`),
-  CONSTRAINT `orderfk_1` FOREIGN KEY (`idproduct`) REFERENCES `products` (`id`)
+  CONSTRAINT `orderfk_0` FOREIGN KEY (`idorder`) REFERENCES `Orders` (`id`),
+  CONSTRAINT `orderfk_1` FOREIGN KEY (`idproduct`) REFERENCES `Products` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
