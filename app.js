@@ -12,14 +12,8 @@ var productsRouter = require("./routes/product");
 var sellerRouter = require("./routes/seller");
 var productCategory = require("./routes/productcategory");
 var courierRouter = require("./routes/courier");
-<<<<<<< HEAD
-var orderRouter = require("./routes/userorder");
-var itemRouter = require("./routes/orderitem");
-// var categoryRouter = require("./routes/categoryquery");
-=======
 var orderItemRouter = require("./routes/orderitem");
 var orderRouter = require("./routes/order");
->>>>>>> cfbee034a65655a8cbc5ce64560c59760c24bc62
 
 var app = express();
 
@@ -51,14 +45,8 @@ app.use("/products", productsRouter);
 app.use("/sellers", sellerRouter);
 app.use("/productcategory", productCategory);
 app.use("/couriers", courierRouter);
-<<<<<<< HEAD
-app.use("/order", orderRouter);
-app.use("/items", itemRouter);
-// app.use("/category", categoryRouter);
-=======
 app.use("/orderitems", orderItemRouter);
 app.use("/orders", orderRouter);
->>>>>>> cfbee034a65655a8cbc5ce64560c59760c24bc62
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
