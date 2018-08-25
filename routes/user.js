@@ -14,7 +14,7 @@ router.get('/', userController.get);
 //     res.send(userController.get)
 // })
 
-router.get('/checktoken', authController.checkToken, userController.getloggedin)
+router.get('/checktoken', userController.getloggedin)
 
 // add new user
 router.post('/register', userController.register);

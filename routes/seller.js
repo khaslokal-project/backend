@@ -15,13 +15,13 @@ router.post("/search/:username", sellerController.searchByKeyword);
 router.get("/:id", sellerController.search);
 
 // add new seller
-router.post("/register", authController.checkToken, sellerController.register);
+router.post("/register", sellerController.register);
 
 // edit seller data
-router.put("/:id", authController.checkToken, sellerController.update);
+router.put("/:id", sellerController.update);
 
 // get data seller by id
-router.post("/login", authController.checkToken, sellerController.login);
+router.post("/login", sellerController.login);
 
 
 // remove seller

@@ -8,7 +8,7 @@ const authController = require('../auth/controller')
 router.get('/', courierController.get)
 
 // check token curier
-router.get('/checktoken', authController.checkToken, courierController.get)
+router.get('/checktoken', courierController.get)
 
 // add new courier
 router.post('/', courierController.add);

@@ -19,9 +19,9 @@ router.post("/search/:name", productController.searchByKeyword);
 
 router.post("/", productController.add);
 
-router.put("/:id", authController.checkToken, productController.update);
+router.put("/:id", productController.update);
 
-router.delete("/:id", authController.checkToken, productController.remove);
+router.delete("/:id", productController.remove);
 
 
 module.exports = router;
