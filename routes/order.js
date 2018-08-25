@@ -25,5 +25,7 @@ router.get('/viewordercomplete', viewOrderCompleteController.get);
 
 router.get('/viewordercomplete/:id', viewOrderCompleteController.getbyid);
 
+router.delete('/:id', orderController.remove)
+
 module.exports = router;
 

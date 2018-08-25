@@ -32,6 +32,24 @@ const orderController = {
     })
   },
 
+  // remove order list
+  remove: (req, res, next)=> {
+    const id = Number(req.params.id)
+    order.destroy({
+      where: { id: id }
+    })
+    .then(
+      res.status(200).send({
+        message: 'order removed'
+      })
+    )
+    .catch(error=> {
+      res.status(500).send({
+        message: error
+      })
+    })
+  },
+
   updatestatus: (req, res, next)=> {
     const id = Number(req.params.id)
     if(req.body.iduser){
