@@ -7,7 +7,7 @@ const viewOrderItemController = {
     // view order item
     get: (req, res, next) => {
 
-        db.sequelize.query("SELECT * FROM ukmkita.view_orderitem;",
+        db.sequelize.query("SELECT * FROM ukmkita.view_ordercomplete",
         { type: sequelize.QueryTypes.SELECT})
             .then(view_orderitem => {
                 res.json(view_orderitem)
@@ -16,7 +16,7 @@ const viewOrderItemController = {
 
     getbyid: (req, res, next) => {
         const id = Number(req.params.id)
-        db.sequelize.query('SELECT * FROM ukmkita.view_orderitem WHERE idorder = ?', {
+        db.sequelize.query('SELECT * FROM ukmkita.view_ordercomplete WHERE idorder = ?', {
             replacements: [id],
             type: sequelize.QueryTypes.SELECT
         }).then(projects => {

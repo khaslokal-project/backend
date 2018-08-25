@@ -4,6 +4,7 @@ var router = express.Router();
 const orderController = require('../controller/order');
 const viewOrderController = require('../controller/vieworder')
 const viewOrderItemController = require('../controller/vieworderitem')
+const viewOrderCompleteController = require('../controller/viewordercomplete')
 
 // get all courier
 router.get('/', orderController.get);
@@ -16,11 +17,13 @@ router.put('/updatestatus/:id', orderController.updatestatus);
 
 router.get('/vieworder', viewOrderController.get);
 
-router.get('/vieworderitem/:id', viewOrderController.getbyid);
+router.get('/vieworderitem/:id', viewOrderItemController.getbyid);
 
 router.get('/vieworderitem', viewOrderItemController.get)
 
-// router.post('/login', courierController.login);
+router.get('/viewordercomplete', viewOrderCompleteController.get);
+
+router.get('/viewordercomplete/:id', viewOrderCompleteController.getbyid);
 
 module.exports = router;
 
