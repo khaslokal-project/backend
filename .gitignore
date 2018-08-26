@@ -5,6 +5,7 @@ package-lock.json
 node_modules/
 *.mwb.bak
 *.mwb
+*.sql
 
 .env
 
@@ -16,3 +17,5 @@ setup.sh
 *.mwb
 
 db/
+postmanscreenshot/
+
