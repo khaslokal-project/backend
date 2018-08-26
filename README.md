@@ -21,6 +21,12 @@ mysql> show tables;
 +-------------------+
 ```
 
+## db Design
+
+![dbdesign](./dbdesign.png)
+
+
+
 ## DESC Products table
 
 ```
@@ -202,55 +208,18 @@ mysql> select Products.name, productCategories.nameCategory
 1 row in set (0.00 sec)
 ```
 
-sequelize model:generate --name orderItem --attributes idproduct:integer,total:integer(BIGINT)
-
-
-ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk0` FOREIGN KEY (`iduser`) REFERENCES `User`(`id`);
-
-ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk1` FOREIGN KEY (`idproduct`) REFERENCES `product`(`id`);
-
-ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk2` FOREIGN KEY (`idseller`) REFERENCES `seller`(`id`);
-
-ALTER TABLE `Orders` ADD CONSTRAINT `Orders_fk3` FOREIGN KEY (`icourier`) REFERENCES `Courier`(`id`);
-
-ALTER TABLE `Sellers` ADD CONSTRAINT `Sellers_fk0` FOREIGN KEY (`idproduct`) REFERENCES `Products`(`id`);
-
-
 ### REST API Endpoints
 
+User routes
 
 | Endpoint          | HTTP   | Description              |
 | ------------------| ------ | -------------------------|
 | `/users`          | GET    | Get all users            |
-| `/users/:id`      | PUT    | update one users by id   |
 | `/users/register` | POST   | Create new users         |
 | `/users/login`    | POST   | users login              |
-| `/userss/:id`     | DELETE | Delete one users by id   |
 
-| Endpoint            | HTTP   | Description              |
-| --------------------| ------ | -------------------------|
-| `/sellers`          | GET    | Get all sellers          |
-| `/sellers/:id`      | PUT    | update one sellers by id |
-| `/sellers/register` | POST   | Create new sellers       |
-| `/sellers/login`    | POST   | sellers login            |
-| `/sellerss/:id`     | DELETE | Delete one sellers by id |
 
-| Endpoint                       | HTTP   | Description               |
-| -------------------------------| ------ | --------------------------|
-| `/products`                    | GET    | Get all products          |
-| `/products/`                   | POST   | Post new Product          |
-| `/products/:id`                | PUT    | update one products by id |
-| `/products/serach/:name`       | POST   | search products by keyword|
-| `/products/category/idcategory`| POST   | Create new products       |
-| `/products/login`              | POST   | products login            |
-| `/productss/:id`               | DELETE | Delete one product by id  |
-
-| Endpoint                   | HTTP   | Description                      |
-| ---------------------------| ------ | ---------------------------------|
-| `/productcategory/`        | GET    | Get all sellers                  |
-| `/productcategory/:id`     | PUT    | update one productcategory by id |
-| `/productcategory/`        | POST   | Create new productcategory       |
-| `/productcategorys/:id`    | DELETE | Delete one productCategory by id |
+## Create view tables
 
 ```
 CREATE 
