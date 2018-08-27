@@ -17,11 +17,11 @@ router.get("/category/:idcategory", productController.searchByCategory);
 // search product by keyword
 router.post("/search/:name", productController.searchByKeyword);
 
-router.post("/", productController.add);
+router.post("/", authController.checkToken, productController.add);
 
-router.put("/:id", productController.update);
+router.put("/:id", authController.checkToken, productController.update);
 
-router.delete("/:id", productController.remove);
+router.delete("/:id", authController.checkToken, productController.remove);
 
 
 module.exports = router;

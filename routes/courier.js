@@ -11,13 +11,13 @@ router.get('/', courierController.get)
 router.get('/checktoken', courierController.get)
 
 // add new courier
-router.post('/', courierController.add);
+router.post('/', authController.checkToken, courierController.add);
 
 // edit single data, identified by id
-router.put('/:id', courierController.update);
+router.put('/:id', authController.checkToken, courierController.update);
 
-router.delete('/:id', courierController.remove);
+router.delete('/:id', authController.checkToken, courierController.remove);
 
-router.post('/login', courierController.login);
+router.post('/login', authController.checkToken, courierController.login);
 
 module.exports = router;
