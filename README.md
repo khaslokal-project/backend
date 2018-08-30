@@ -113,3 +113,11 @@ VIEW `view_orderitem` AS
         (`orderitems` `b`
         LEFT JOIN `products` `c` ON ((`c`.`id` = `b`.`idproduct`)))
 ```
+
+## Backend Features to be implemented
+
+### Login and logged in status with jwt token
+
+### User or Seller login token type
+
+### Update vieworder query to show per user or seller
